@@ -20,14 +20,16 @@ const InfoDivs = (props) => {
                 src={item.frame}
               ></iframe>
             </div>
-            <div className="flex items-center justify-center w-full px-[2rem]">
-              <p className="text-[24px] font-semibold text-gray-800 dark:text-gray-200">
-                {" "}
-                <span className="text-[#0ac5a8] font-bold text-[40px]">
-                  {item.title}&nbsp;
-                </span>{" "}
-                {item.subtitle}{" "}
-              </p>
+            <div className="flex items-center justify-center w-full  px-[1rem] md:px-[2rem]">
+              <div className="px-4 py-8 dark:bg-gray-600/[0.25] bg-gray-200/[0.25] filter backdrop-blur-sm rounded-xl">
+                <p className="text-[24px] font-semibold text-gray-800 dark:text-gray-200 ">
+                  {" "}
+                  <span className="text-[#0ac5a8] font-bold text-[40px]">
+                    {item.title}&nbsp;
+                  </span>{" "}
+                  {item.subtitle}{" "}
+                </p>
+              </div>
             </div>
           </div>
         ))}
