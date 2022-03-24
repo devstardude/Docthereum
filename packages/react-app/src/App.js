@@ -1,8 +1,15 @@
 import { useQuery } from "@apollo/client";
 import { Contract } from "@ethersproject/contracts";
-import { shortenAddress, useCall, useEthers, useLookupAddress } from "@usedapp/core";
+import {
+  shortenAddress,
+  useCall,
+  useEthers,
+  useLookupAddress,
+} from "@usedapp/core";
 import React, { useEffect, useState } from "react";
-
+import Landing from "./components/main/Landing";
+import Navbar from "./components/shared/Navbar";
+import CustomButton from "./components/shared/CustomButton"
 import { Body, Button, Container, Header, Image, Link } from "./components";
 import logo from "./ethereumLogo.png";
 
@@ -32,7 +39,7 @@ function WalletButton() {
   }, [error]);
 
   return (
-    <Button
+    <div
       onClick={() => {
         if (!account) {
           activateBrowserWallet();
@@ -43,7 +50,7 @@ function WalletButton() {
     >
       {rendered === "" && "Connect Wallet"}
       {rendered !== "" && rendered}
-    </Button>
+    </div>
   );
 }
 
@@ -51,16 +58,19 @@ function App() {
   // Read more about useDapp on https://usedapp.io/
   const { error: contractCallError, value: tokenBalance } =
     useCall({
-       contract: new Contract(addresses.ceaErc20, abis.erc20),
-       method: "balanceOf",
-       args: ["0x3f8CB69d9c0ED01923F11c829BaE4D9a4CB6c82C"],
+      contract: new Contract(addresses.ceaErc20, abis.erc20),
+      method: "balanceOf",
+      args: ["0x3f8CB69d9c0ED01923F11c829BaE4D9a4CB6c82C"],
     }) ?? {};
 
   const { loading, error: subgraphQueryError, data } = useQuery(GET_TRANSFERS);
 
   useEffect(() => {
     if (subgraphQueryError) {
-      console.error("Error while querying subgraph:", subgraphQueryError.message);
+      console.error(
+        "Error while querying subgraph:",
+        subgraphQueryError.message
+      );
       return;
     }
     if (!loading && data && data.transfers) {
@@ -69,22 +79,14 @@ function App() {
   }, [loading, subgraphQueryError, data]);
 
   return (
-    <Container>
-      <Header>
-        <WalletButton />
-      </Header>
-      <Body>
-        <Image src={logo} alt="ethereum-logo" />
-        <p>
-          Edit <code>packages/react-app/src/App.js</code> and save to reload.
-        </p>
-        <Link href="https://reactjs.org">
-          Learn React
-        </Link>
-        <Link href="https://usedapp.io/">Learn useDapp</Link>
-        <Link href="https://thegraph.com/docs/quick-start">Learn The Graph</Link>
-      </Body>
-    </Container>
+    <React.Fragment className="App overflow-x-hidden">
+      <Navbar>
+        <CustomButton className="hidden md:block pr-3">
+          <WalletButton />
+        </CustomButton>
+      </Navbar>
+      <Landing />
+    </React.Fragment>
   );
 }
 

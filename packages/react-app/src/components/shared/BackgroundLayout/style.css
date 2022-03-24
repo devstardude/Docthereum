@@ -1,0 +1,17 @@
+.BackgroundLayout{
+    @apply w-screen h-full fixed -z-20;
+}
+.BackgroundLayout .BlackBackground {
+  @apply absolute inset-0 w-full h-full bg-white dark:bg-black -z-30 transition-all ease-in duration-500;
+}
+
+.BackgroundLayout .BlueBall {
+  @apply absolute rounded-full bg-blue-200 dark:bg-blue-900 bottom-[-200px] left-[-150px]  w-[30rem] h-[30rem]  filter blur-3xl opacity-90 -z-20 transition-all duration-500;
+}
+.BackgroundLayout .RedBall {
+  @apply absolute rounded-full bg-red-200 dark:bg-red-900 top-[-200px] right-[-150px]  w-[30rem] h-[30rem]  filter blur-3xl opacity-90 -z-20 transition-all duration-500;
+}
+
+.BackgroundLayout .BlackOverlay {
+  @apply absolute inset-0 w-full h-full bg-black bg-opacity-0 dark:bg-opacity-50 -z-10;
+}
