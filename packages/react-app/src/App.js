@@ -10,7 +10,6 @@ import React, { useEffect, useState } from "react";
 import Landing from "./components/main/Landing";
 import Navbar from "./components/shared/Navbar";
 import CustomButton from "./components/shared/CustomButton"
-import { Body, Button, Container, Header, Image, Link } from "./components";
 import logo from "./ethereumLogo.png";
 
 import { addresses, abis } from "@my-app/contracts";

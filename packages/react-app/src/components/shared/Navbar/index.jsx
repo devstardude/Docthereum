@@ -1,12 +1,5 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-// import {
-//   SunIcon,
-//   MoonIcon,
-//   MenuIcon,
-//   XIcon,
-//   CubeTransparentIcon,
-// } from "@heroicons/react/outline";
 import { FaFileMedicalAlt } from "react-icons/fa";
 import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -28,7 +21,7 @@ export default function Navbar(props) {
   return (
     <Disclosure
       as="nav"
-      className="bg-white/[0.25] dark:bg-black/[0.25] filter backdrop-blur-sm absolute w-screen top-0 left-0 z-20 overflow-x-hidden"
+      className="bg-white/[0.25] dark:bg-black/[0.25] filter backdrop-blur-sm absolute w-screen top-0 left-0 z-20"
     >
       {({ open }) => (
         <>
@@ -41,7 +34,10 @@ export default function Navbar(props) {
                   {open ? (
                     <ImCross className="block h-6 w-6" aria-hidden="true" />
                   ) : (
-                    <GiHamburgerMenu className="block h-6 w-6" aria-hidden="true" />
+                    <GiHamburgerMenu
+                      className="block h-6 w-6"
+                      aria-hidden="true"
+                    />
                   )}
                 </Disclosure.Button>
               </div>
@@ -119,32 +115,6 @@ export default function Navbar(props) {
                     leaveTo="transform opacity-0 scale-95"
                   >
                     <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="/"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Your Profile
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="/"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Settings
-                          </a>
-                        )}
-                      </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
                           <a
