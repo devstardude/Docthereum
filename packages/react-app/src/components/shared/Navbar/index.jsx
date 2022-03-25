@@ -119,14 +119,14 @@ export default function Navbar(props) {
                     <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
-                          <NavLink
+                          <div
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
                             Sign out
-                          </NavLink>
+                          </div>
                         )}
                       </Menu.Item>
                     </Menu.Items>
