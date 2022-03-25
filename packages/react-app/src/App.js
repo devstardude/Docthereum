@@ -9,11 +9,12 @@ import {
 import React, { useEffect, useState } from "react";
 import Landing from "./components/main/Landing";
 import Navbar from "./components/shared/Navbar";
-import CustomButton from "./components/shared/CustomButton"
-import logo from "./ethereumLogo.png";
+import CustomButton from "./components/shared/CustomButton";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import { addresses, abis } from "@my-app/contracts";
 import GET_TRANSFERS from "./graphql/subgraph";
+import UploadPdf from "./components/main/UploadPdf";
 
 function WalletButton() {
   const [rendered, setRendered] = useState("");
@@ -79,12 +80,17 @@ function App() {
 
   return (
     <React.Fragment className="App overflow-x-hidden">
-      <Navbar>
-        <CustomButton className="hidden md:block pr-3">
-          <WalletButton />
-        </CustomButton>
-      </Navbar>
-      <Landing />
+      <Router>
+        <Navbar>
+          <CustomButton className="hidden md:block pr-3">
+            <WalletButton />
+          </CustomButton>
+        </Navbar>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/upload" element={<UploadPdf />} />
+        </Routes>
+      </Router>
     </React.Fragment>
   );
 }

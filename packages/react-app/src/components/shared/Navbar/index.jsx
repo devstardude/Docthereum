@@ -5,10 +5,11 @@ import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
 import useDarkMode from "../../hooks/useDarkMode";
+import { NavLink } from "react-router-dom";
 const navigation = [
-  { name: "Home", href: "#", current: true },
-  { name: "My Reports", href: "#", current: false },
-  { name: "Search", href: "#", current: false },
+  { name: "Home", href: "/", current: true },
+  { name: "Upload", href: "/upload", current: false },
+  { name: "My Reports", href: "/", current: false },
 ];
 
 function classNames(...classes) {
@@ -55,9 +56,9 @@ export default function Navbar(props) {
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <a
+                      <NavLink
                         key={item.name}
-                        href={item.href}
+                        to={item.href}
                         className={classNames(
                           item.current
                             ? "bg-gray-900 text-white"
@@ -67,7 +68,7 @@ export default function Navbar(props) {
                         aria-current={item.current ? "page" : undefined}
                       >
                         {item.name}
-                      </a>
+                      </NavLink>
                     ))}
                   </div>
                 </div>
@@ -117,15 +118,14 @@ export default function Navbar(props) {
                     <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="/"
+                          <NavLink
                             className={classNames(
                               active ? "bg-gray-100" : "",
                               "block px-4 py-2 text-sm text-gray-700"
                             )}
                           >
                             Sign out
-                          </a>
+                          </NavLink>
                         )}
                       </Menu.Item>
                     </Menu.Items>
