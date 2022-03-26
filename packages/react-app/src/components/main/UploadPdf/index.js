@@ -152,7 +152,7 @@ const UploadPdf = (props) => {
                   />
                 </div>
 
-                <CustomButton onClick={pdfUploadHandler} type="button">
+                <CustomButton onClick={pdfUploadHandler} type="submit">
                   <p className="px-5 py-[2px]">Upload PDF</p>
                 </CustomButton>
               </div>

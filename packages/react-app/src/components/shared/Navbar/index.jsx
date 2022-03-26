@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { FaFileMedicalAlt } from "react-icons/fa";
 import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
@@ -11,6 +11,7 @@ const navigation = [
   { name: "Upload", href: "/upload", current: false },
   { name: "My Reports", href: "/myreports", current: false },
   { name: "Register", href: "/register", current: false },
+  { name: "Search", href: "/search", current: false },
 ];
 
 function classNames(...classes) {
@@ -19,7 +20,7 @@ function classNames(...classes) {
 
 export default function Navbar(props) {
   const [theme, setTheme] = useDarkMode();
-
+  const [currentPage, setCurrentPage] = useState(0);
   return (
     <Disclosure
       as="nav"
@@ -56,12 +57,13 @@ export default function Navbar(props) {
                 </div>
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
-                    {navigation.map((item) => (
+                    {navigation.map((item, index) => (
                       <NavLink
+                      onClick={()=>setCurrentPage(index)}
                         key={item.name}
                         to={item.href}
                         className={classNames(
-                          item.current
+                          currentPage===index
                             ? "bg-gray-900 text-white"
                             : "dark:text-gray-300 text-gray-700 hover:bg-gray-700 hover:text-white",
                           "px-3 py-2 rounded-md text-sm font-medium"

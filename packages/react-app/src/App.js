@@ -1,5 +1,4 @@
 import { useQuery } from "@apollo/client";
-
 import {
   shortenAddress,
   useCall,
@@ -17,6 +16,7 @@ import GET_TRANSFERS from "./graphql/subgraph";
 import UploadPdf from "./components/main/UploadPdf";
 import Register from "./components/main/Register";
 import MyReports from "./components/main/MyReports";
+import SearchReports from "./components/main/SearchReports";
 
 function WalletButton(props) {
   const [rendered, setRendered] = useState("");
@@ -69,11 +69,13 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/myreports" element={<MyReports />} />
+          <Route path="/search" element={<SearchReports />} />
           <Route path="/upload" element={<UploadPdf contract={contract} />} />
           <Route
             path="/register"
             element={<Register contract={contract} account={account} />}
           />
+          <Route path="*" element={<Landing />} />
         </Routes>
       </Router>
     </React.Fragment>
