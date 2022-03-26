@@ -4,8 +4,9 @@ import'./style.css';
 const Button = (props) => {
   return (
     <div className={props.className}>
-      <button type="submit"
+      <button 
         className="Button"
+        type = "submit"
       >
         {props.children}
       </button>

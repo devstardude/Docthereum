@@ -129,6 +129,12 @@
 			},
 			{
 				"indexed": false,
+				"internalType": "string",
+				"name": "fileId",
+				"type": "string"
+			},
+			{
+				"indexed": false,
 				"internalType": "uint256",
 				"name": "AddedAt",
 				"type": "uint256"

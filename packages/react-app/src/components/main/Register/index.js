@@ -5,8 +5,16 @@ import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import "./style.css";
 import CustomButton from "../../shared/CustomButton";
-const Register = ({ color }) => {
+
+import { useCall,
+  useContractFunction,
+  useEthers
+ } from "@usedapp/core";
+
+const Register = (props) => {
+  
   const [openTab, setOpenTab] = React.useState(0);
+<<<<<<< HEAD
 
   const dataSubmitHandler = async (values, { setSubmitting, resetForm }) => {
     const data = JSON.stringify({
@@ -15,6 +23,24 @@ const Register = ({ color }) => {
       uid: values.uid,
     });
     console.log("Data", data);
+=======
+  
+  const {state, send} = useContractFunction(props.contract,openTab==0? 'addAuthLab':'addAuthDoc'); 
+  const {status} = state;
+  const authorise = async (account,name,id)=>{
+    
+    await send(account,name,id)
+
+  }
+  
+  const dataSubmitHandler = async (values, { setSubmitting, resetForm }) => {
+
+      await authorise(props.account,values.name,values.uid).then(()=>{
+        console.log(status);
+      }).catch(err=>console.log)
+    
+
+>>>>>>> ea0b36a6bed9486b42914f7674204049c02c836b
     setSubmitting(false);
     resetForm();
     // history.push(`/user/${auth.userId}`);
