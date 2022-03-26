@@ -1,13 +1,10 @@
 import React from "react";
-import'./style.css';
+import "./style.css";
 
 const Button = (props) => {
   return (
     <div className={props.className}>
-      <button 
-        className="Button"
-        type = "submit"
-      >
+      <button onClick={props.onClick} className="Button" type="submit">
         {props.children}
       </button>
     </div>
