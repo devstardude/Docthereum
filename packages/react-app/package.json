@@ -29,9 +29,15 @@
     "@testing-library/user-event": "^13.5.0",
     "@types/react": "^17.0.40",
     "@usedapp/core": "^0.12.1",
+    "buffer": "^6.0.3",
+    "dotenv": "^16.0.0",
+    "dotenv-webpack": "^7.1.0",
     "framer-motion": "^6.2.8",
+    "fs": "^0.0.1-security",
     "graphql": "^16.3.0",
     "ipfs-deploy": "^11.2.0",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
     "pdfjs-dist": "2.12.313",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -39,7 +45,8 @@
     "react-router-dom": "^6.2.2",
     "react-scripts": "^5.0.0",
     "styled-components": "^5.3.3",
-    "typewriter-effect": "^2.18.2"
+    "typewriter-effect": "^2.18.2",
+    "web3.storage": "^4.0.0"
   },
   "eslintConfig": {
     "extends": [
