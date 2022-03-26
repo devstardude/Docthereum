@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import BackgroundLayout from "../../shared/BackgroundLayout";
 
-import { useCall,
-         useContractFunction,
-         useEthers
-        } from "@usedapp/core";
+import { useCall, useContractFunction, useEthers } from "@usedapp/core";
 
 //import web3.storage to store the file
-import { Web3Storage,getFilesFromPath } from 'web3.storage';
+import { Web3Storage, getFilesFromPath } from "web3.storage";
 // Import Worker
 import { Worker } from "@react-pdf-viewer/core";
 // Import the main Viewer component
@@ -19,14 +16,13 @@ import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
 // Import styles of default layout plugin
 import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 import "./style.css";
-import {WEB3STORAGE_TOKEN} from "@my-app/react-app/src/constants.js";
+import { WEB3STORAGE_TOKEN } from "@my-app/react-app/src/constants.js";
 import { Buffer } from "buffer";
-
-
+import {CustomInput} from "../../shared/CustomInput";
+import CustomButton from "../../shared/CustomButton";
+import MastTitle from "../../shared/MastTitle";
 const UploadPdf = (props) => {
-  
-  const [patientAddress,setPatientAddress] = useState(""); 
-  
+  const [patientAddress, setPatientAddress] = useState("");
 
   // creating new plugin instance
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
@@ -58,106 +54,117 @@ const UploadPdf = (props) => {
       console.log("please select a PDF");
     }
   };
-  const handleAddress = (e) =>{
+  const handleAddress = (e) => {
     setPatientAddress(e.target.value);
+  };
+  function makeStorageClient() {
+    return new Web3Storage({ token: WEB3STORAGE_TOKEN });
   }
-  function makeStorageClient () {
-    return new Web3Storage({ token: WEB3STORAGE_TOKEN })
-  }
-  
-  function makeFileObject (rawfile) { 
+
+  function makeFileObject(rawfile) {
     const d = new Date();
     let time = d.getTime();
-  
-    const buffer = Buffer.from(rawfile)
-    
-    let uniqueId = `Report_${patientAddress}_${time}`
+
+    const buffer = Buffer.from(rawfile);
+
+    let uniqueId = `Report_${patientAddress}_${time}`;
     console.log(uniqueId);
-  
-    const file =   [new File([buffer], uniqueId)]
-    
-    return file
+
+    const file = [new File([buffer], uniqueId)];
+
+    return file;
   }
-  
-  async function storeWithProgress (files) {
+
+  async function storeWithProgress(files) {
     // show the root cid as soon as it's ready
-    const onRootCidReady = cid => {
-      console.log('uploading files with cid:', cid)
-    }
-  
+    const onRootCidReady = (cid) => {
+      console.log("uploading files with cid:", cid);
+    };
+
     // when each chunk is stored, update the percentage complete and display
-    const totalSize = files.map(f => f.size).reduce((a, b) => a + b, 0)
-    let uploaded = 0
-  
-    const onStoredChunk = size => {
-      uploaded += size
-      const pct = totalSize / uploaded
-      console.log(`Uploading... ${pct.toFixed(2)}% complete`)
-    }
-  
+    const totalSize = files.map((f) => f.size).reduce((a, b) => a + b, 0);
+    let uploaded = 0;
+
+    const onStoredChunk = (size) => {
+      uploaded += size;
+      const pct = totalSize / uploaded;
+      console.log(`Uploading... ${pct.toFixed(2)}% complete`);
+    };
+
     // makeStorageClient returns an authorized Web3.Storage client instance
-    const client = makeStorageClient()
-  
+    const client = makeStorageClient();
+
     // client.put will invoke our callbacks during the upload
     // and return the root cid when the upload completes
-    return client.put(files, { onRootCidReady, onStoredChunk })
+    return client.put(files, { onRootCidReady, onStoredChunk });
   }
-  
-  
-  const { state, send } = useContractFunction(props.contract, 'SaveReport')
-  const uploadToBlokchain = async(cid, userAddress) =>{
-    const result = await send(cid,userAddress);
-    
-    
+
+  const { state, send } = useContractFunction(props.contract, "SaveReport");
+  const uploadToBlokchain = async (cid, userAddress) => {
+    const result = await send(cid, userAddress);
+
     console.log(state.errorMessage);
     //use state to show progress : minting, succes or failure
     // do something with result : true or false
-  }
+  };
 
   const pdfUploadHandler = async () => {
     // take pdf file from state and upload
     console.log(pdfFile);
     const file = makeFileObject(pdfFile);
-    storeWithProgress(file).then((id)=>{
+    storeWithProgress(file).then((id) => {
       console.log("uploading to chain...");
-      uploadToBlokchain(id,patientAddress);
-    })
-    
-    
+      uploadToBlokchain(id, patientAddress);
+    });
   };
-
 
   return (
     <React.Fragment>
       <BackgroundLayout />
-      <div className="pt-[5rem] px-2 md:px-8">
-        <form>
-          <label>
-            <button onClick={pdfUploadHandler} type= "button" className="py-2 mt-4 border-4">
-              Upload PDF
-            </button>
-          </label>
-          <br></br>
+      <MastTitle title="Upload Report" />
+      <div className="pt-[2rem] px-2 md:px-8 ">
+        <div className="flex justify-center items-center ">
+          <div className="w-[90%] md:w-[70%] lg:w-[50%] bg-white/[0.25] dark:bg-black/[0.25] filter backdrop-blur-sm p-4 rounded-lg mb-3">
+            <form>
+              <div class="flex flex-col items-center justify-around bg-grey-lighter">
+                <label class="rounded-full px-5 py-[2px] border-[3px] border-[#0ac5a8] text-gray-700 dark:text-gray-200 dark:hover:text-black cursor-pointer hover:bg-[#0ac5a8] hover:text-white font-medium transition-colors">
+                  <div className="flex items-center justify-center">
+                    <svg
+                      class="w-8 h-8"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
+                    </svg>
+                    <span class="pl-5 text-base leading-normal">
+                      Select a file
+                    </span>
+                  </div>
 
-          <input
-            type="file"
-            className="form-control"
-            onChange={handleFile}
-          ></input>
-          {/* add css to this input below */}
-           <input
-            type="txt"
-            className="form-control"
-            onChange={handleAddress}
-          ></input>
+                  <input type="file" onChange={handleFile} class="hidden" />
+                </label>
+                <div className=" w-[15rem] md:w-[25rem]">
+                  <CustomInput
+                    onChange={handleAddress}
+                    label="Enter Address"
+                    placeholder="Enter wallet address of the patient"
+                  />
+                </div>
 
-          {/* we will display error message in case user select some file
-        other than pdf */}
-          {pdfError && <span className="text-danger">{pdfError}</span>}
-        </form>
+                <CustomButton onClick={pdfUploadHandler} type="button">
+                  <p className="px-5 py-[2px]">Upload PDF</p>
+                </CustomButton>
+              </div>
+              <div className="flex justify-center items-center pt-4">
+                {pdfError && <span className="text-danger">{pdfError}</span>}
+                {!pdfFile && <>No file is selected yet</>}
+              </div>
+            </form>
+          </div>
+        </div>
 
         {/* View PDF */}
-        <h5>View PDF</h5>
         <div className="viewer">
           {/* render this if we have a pdf file */}
           {pdfFile && (
@@ -170,7 +177,6 @@ const UploadPdf = (props) => {
           )}
 
           {/* render this if we have pdfFile state null   */}
-          {!pdfFile && <>No file is selected yet</>}
         </div>
       </div>
       {/* Upload PDF */}

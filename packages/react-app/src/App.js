@@ -18,13 +18,11 @@ import UploadPdf from "./components/main/UploadPdf";
 import Register from "./components/main/Register";
 import MyReports from "./components/main/MyReports";
 
-
-function WalletButton() {
+function WalletButton(props) {
   const [rendered, setRendered] = useState("");
 
   const ens = useLookupAddress();
   const { account, activateBrowserWallet, deactivate, error } = useEthers();
-
   useEffect(() => {
     if (ens) {
       setRendered(ens);
@@ -40,7 +38,6 @@ function WalletButton() {
       console.error("Error while connecting wallet:", error.message);
     }
   }, [error]);
-
   return (
     <div
       onClick={() => {
@@ -58,8 +55,9 @@ function WalletButton() {
 }
 
 function App() {
-  const contract= new Contract(addresses.DocAddress, abis.docthereum)
-  const {account} = useEthers();
+  const [address,setAddress]=useState(null)
+  const contract = new Contract(addresses.DocAddress, abis.docthereum);
+  const { account } = useEthers();
   return (
     <React.Fragment className="App overflow-x-hidden">
       <Router>
@@ -71,8 +69,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/myreports" element={<MyReports />} />
-          <Route path="/upload" element={<UploadPdf contract={contract}/>} />
-          <Route path="/register" element={<Register contract={contract} account= {account}/>} />
+          <Route path="/upload" element={<UploadPdf contract={contract} />} />
+          <Route
+            path="/register"
+            element={<Register contract={contract} account={account} />}
+          />
         </Routes>
       </Router>
     </React.Fragment>
