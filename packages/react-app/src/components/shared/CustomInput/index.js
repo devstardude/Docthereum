@@ -6,6 +6,13 @@ import "./style.css";
 
 const CustomInput = (props) => {
   const [field, meta] = useField(props);
+   const textFieldColor = "#0ac5a8";
+    const textFieldSX = {
+        input: {
+            "-webkit-text-fill-color": `${textFieldColor} !important`,
+            color: `${textFieldColor} !important`,
+        },
+    };
   return (
     <div className="m-3 py-2">
       <TextField
@@ -21,6 +28,7 @@ const CustomInput = (props) => {
         InputLabelProps={{
           style: { color: "#0ac5a8", borderColor: "yellow" },
         }}
+        sx={textFieldSX}
         InputProps={{
           style: {
             fontFamily: "Lato",
@@ -29,6 +37,7 @@ const CustomInput = (props) => {
           },
         }}
         type={props.password && "password"}
+        disabled={props.disabled && true}
       />
     </div>
   );

@@ -17,6 +17,8 @@ import {GET_DOC_AUTHS,GET_LAB_AUTHS,GET_REPORTS_SAVED} from "./graphql/subgraph"
 import UploadPdf from "./components/main/UploadPdf";
 import Register from "./components/main/Register";
 import {API_KEY,SUBGRAPH_NAME} from "./constants.js";
+import MyReports from "./components/main/MyReports";
+
 
 function WalletButton() {
   const [rendered, setRendered] = useState("");
@@ -90,6 +92,9 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/upload" element={<UploadPdf contract={contract}/>} />
           <Route path="/register" element={<Register contract={contract} account= {account}/>} />
+
+          <Route path="/myreports" element={<MyReports />} />
+
         </Routes>
       </Router>
     </React.Fragment>
