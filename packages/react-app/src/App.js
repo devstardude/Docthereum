@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { Contract } from "@ethersproject/contracts";
+
 import {
   shortenAddress,
   useCall,
@@ -11,11 +11,13 @@ import Landing from "./components/main/Landing";
 import Navbar from "./components/shared/Navbar";
 import CustomButton from "./components/shared/CustomButton";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-
+import { Contract } from "@ethersproject/contracts";
 import { addresses, abis } from "@my-app/contracts";
 import GET_TRANSFERS from "./graphql/subgraph";
 import UploadPdf from "./components/main/UploadPdf";
 import Register from "./components/main/Register";
+
+
 function WalletButton() {
   const [rendered, setRendered] = useState("");
 
@@ -56,27 +58,30 @@ function WalletButton() {
 
 function App() {
   // Read more about useDapp on https://usedapp.io/
-  const { error: contractCallError, value: tokenBalance } =
-    useCall({
-      contract: new Contract(addresses.ceaErc20, abis.erc20),
-      method: "balanceOf",
-      args: ["0x3f8CB69d9c0ED01923F11c829BaE4D9a4CB6c82C"],
-    }) ?? {};
 
-  const { loading, error: subgraphQueryError, data } = useQuery(GET_TRANSFERS);
+  // const { loading, error: subgraphQueryError, data } = useQuery(GET_TRANSFERS);
 
-  useEffect(() => {
-    if (subgraphQueryError) {
-      console.error(
-        "Error while querying subgraph:",
-        subgraphQueryError.message
-      );
-      return;
-    }
-    if (!loading && data && data.transfers) {
-      console.log({ transfers: data.transfers });
-    }
-  }, [loading, subgraphQueryError, data]);
+  // const { error: contractCallError, value: valu } =
+  // useCall({
+  //   contract: new Contract(addresses.DocAddress, abis.docthereum),
+  //   method: "ContractName",
+  //   // args: ["0x3f8CB69d9c0ED01923F11c829BaE4D9a4CB6c82C"],
+  // }) ?? {};
+  // const contract = new Contract(addresses.DocAddress, abis.docthereum);
+  // console.log(contract);
+  
+  // useEffect(() => {
+  //   if (subgraphQueryError) {
+  //     console.error(
+  //       "Error while querying subgraph:",
+  //       subgraphQueryError.message
+  //     );
+  //     return;
+  //   }
+  //   if (!loading && data && data.transfers) {
+  //     console.log({ transfers: data.transfers });
+  //   }
+  // }, [loading, subgraphQueryError, data]);
 
   return (
     <React.Fragment className="App overflow-x-hidden">
