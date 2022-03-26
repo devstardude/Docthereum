@@ -70,14 +70,9 @@ function App() {
         </Navbar>
         <Routes>
           <Route path="/" element={<Landing />} />
-<<<<<<< HEAD
-          <Route path="/upload" element={<UploadPdf />} />
-          <Route path="/register" element={<Register />} />
           <Route path="/myreports" element={<MyReports />} />
-=======
           <Route path="/upload" element={<UploadPdf contract={contract}/>} />
           <Route path="/register" element={<Register contract={contract} account= {account}/>} />
->>>>>>> ea0b36a6bed9486b42914f7674204049c02c836b
         </Routes>
       </Router>
     </React.Fragment>

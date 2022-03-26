@@ -14,16 +14,6 @@ import { useCall,
 const Register = (props) => {
   
   const [openTab, setOpenTab] = React.useState(0);
-<<<<<<< HEAD
-
-  const dataSubmitHandler = async (values, { setSubmitting, resetForm }) => {
-    const data = JSON.stringify({
-      name: values.name,
-      wallet: values.wallet,
-      uid: values.uid,
-    });
-    console.log("Data", data);
-=======
   
   const {state, send} = useContractFunction(props.contract,openTab==0? 'addAuthLab':'addAuthDoc'); 
   const {status} = state;
@@ -40,7 +30,6 @@ const Register = (props) => {
       }).catch(err=>console.log)
     
 
->>>>>>> ea0b36a6bed9486b42914f7674204049c02c836b
     setSubmitting(false);
     resetForm();
     // history.push(`/user/${auth.userId}`);
