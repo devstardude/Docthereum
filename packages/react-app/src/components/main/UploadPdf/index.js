@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import BackgroundLayout from "../../shared/BackgroundLayout";
-//import contract 
-import { Contract } from "@ethersproject/contracts";
+
 import { useCall,
          useContractFunction,
          useEthers
         } from "@usedapp/core";
-import { addresses, abis } from "@my-app/contracts";
+
 //import web3.storage to store the file
 import { Web3Storage,getFilesFromPath } from 'web3.storage';
 // Import Worker
@@ -28,7 +27,7 @@ const UploadPdf = (props) => {
   
   const [patientAddress,setPatientAddress] = useState(""); 
   
-  const contract= new Contract(addresses.DocAddress, abis.docthereum)
+
   // creating new plugin instance
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
 
@@ -105,7 +104,7 @@ const UploadPdf = (props) => {
   }
   
   
-  const { state, send } = useContractFunction(contract, 'SaveReport')
+  const { state, send } = useContractFunction(props.contract, 'SaveReport')
   const uploadToBlokchain = async(cid, userAddress) =>{
     const result = await send(cid,userAddress);
     
