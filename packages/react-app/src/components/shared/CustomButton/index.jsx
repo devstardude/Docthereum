@@ -6,6 +6,7 @@ const Button = (props) => {
     <div className={props.className}>
       <button type="submit"
         className="Button"
+        type = "submit"
       >
         {props.children}
       </button>

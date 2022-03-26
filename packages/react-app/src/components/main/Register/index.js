@@ -5,16 +5,31 @@ import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import "./style.css";
 import CustomButton from "../../shared/CustomButton";
-const Register = ({ color }) => {
-  const [openTab, setOpenTab] = React.useState(0);
 
+import { useCall,
+  useContractFunction,
+  useEthers
+ } from "@usedapp/core";
+
+const Register = (props) => {
+  
+  const [openTab, setOpenTab] = React.useState(0);
+  
+  const {state, send} = useContractFunction(props.contract,openTab==0? 'addAuthLab':'addAuthDoc'); 
+  const {status} = state;
+  const authorise = async (account,name,id)=>{
+    
+    await send(account,name,id)
+
+  }
+  
   const dataSubmitHandler = async (values, { setSubmitting, resetForm }) => {
-    const data = JSON.stringify({
-      name: values.name,
-      wallet: values.wallet,
-      uid: values.uid,
-    });
-    console.log("Data", data);
+
+      await authorise(props.account,values.name,values.uid).then(()=>{
+        console.log(status);
+      }).catch(err=>console.log)
+    
+
     setSubmitting(false);
     resetForm();
     // history.push(`/user/${auth.userId}`);

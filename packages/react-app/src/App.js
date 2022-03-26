@@ -58,32 +58,8 @@ function WalletButton() {
 }
 
 function App() {
-  // Read more about useDapp on https://usedapp.io/
-
-  // const { loading, error: subgraphQueryError, data } = useQuery(GET_TRANSFERS);
-
-  // const { error: contractCallError, value: valu } =
-  // useCall({
-  //   contract: new Contract(addresses.DocAddress, abis.docthereum),
-  //   method: "ContractName",
-  //   // args: ["0x3f8CB69d9c0ED01923F11c829BaE4D9a4CB6c82C"],
-  // }) ?? {};
-  // const contract = new Contract(addresses.DocAddress, abis.docthereum);
-  // console.log(contract);
-  
-  // useEffect(() => {
-  //   if (subgraphQueryError) {
-  //     console.error(
-  //       "Error while querying subgraph:",
-  //       subgraphQueryError.message
-  //     );
-  //     return;
-  //   }
-  //   if (!loading && data && data.transfers) {
-  //     console.log({ transfers: data.transfers });
-  //   }
-  // }, [loading, subgraphQueryError, data]);
-
+  const contract= new Contract(addresses.DocAddress, abis.docthereum)
+  const {account} = useEthers();
   return (
     <React.Fragment className="App overflow-x-hidden">
       <Router>
@@ -94,9 +70,11 @@ function App() {
         </Navbar>
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/upload" element={<UploadPdf />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/upload" element={<UploadPdf contract={contract}/>} />
+          <Route path="/register" element={<Register contract={contract} account= {account}/>} />
+
           <Route path="/myreports" element={<MyReports />} />
+
         </Routes>
       </Router>
     </React.Fragment>
