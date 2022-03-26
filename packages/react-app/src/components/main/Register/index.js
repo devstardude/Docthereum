@@ -7,11 +7,12 @@ import "./style.css";
 import CustomButton from "../../shared/CustomButton";
 const Register = ({ color }) => {
   const [openTab, setOpenTab] = React.useState(0);
+
   const dataSubmitHandler = async (values, { setSubmitting, resetForm }) => {
     const data = JSON.stringify({
-      name: values.title,
-      wallet: "",
-      uid: "",
+      name: values.name,
+      wallet: values.wallet,
+      uid: values.uid,
     });
     console.log("Data", data);
     setSubmitting(false);
@@ -37,7 +38,7 @@ const Register = ({ color }) => {
           <Formik
             initialValues={{
               name: "",
-              wallet: "",
+              wallet: "x0as2930923018239",
               uid: "",
             }}
             validationSchema={Yup.object({
@@ -53,6 +54,7 @@ const Register = ({ color }) => {
               <Form>
                 <CustomInput label="Name" name="name" placeholder="Name here" />
                 <CustomInput
+                  disabled={true}
                   label="Wallet"
                   name="wallet"
                   placeholder="Wallet ID"
@@ -63,7 +65,9 @@ const Register = ({ color }) => {
                   placeholder="Tell us your unique id"
                 />
                 <div className="flex justify-center pt-[1.5rem]">
-                  <CustomButton><p className="px-2 py-1 text-[20px]">Submit</p></CustomButton>
+                  <CustomButton>
+                    <p className="px-2 py-1 text-[20px]">Submit</p>
+                  </CustomButton>
                 </div>
               </Form>
             )}

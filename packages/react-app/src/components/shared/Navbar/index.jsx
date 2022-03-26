@@ -9,7 +9,7 @@ import { NavLink } from "react-router-dom";
 const navigation = [
   { name: "Home", href: "/", current: true },
   { name: "Upload", href: "/upload", current: false },
-  { name: "My Reports", href: "/my-reports", current: false },
+  { name: "My Reports", href: "/myreports", current: false },
   { name: "Register", href: "/register", current: false },
 ];
 

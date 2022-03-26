@@ -32,10 +32,10 @@
     "@testing-library/user-event": "^13.5.0",
     "@types/react": "^17.0.40",
     "@usedapp/core": "^0.12.1",
-    "formik": "^2.2.9",
     "buffer": "^6.0.3",
     "dotenv": "^16.0.0",
     "dotenv-webpack": "^7.1.0",
+    "formik": "^2.2.9",
     "framer-motion": "^6.2.8",
     "fs": "^0.0.1-security",
     "graphql": "^16.3.0",
@@ -50,8 +50,8 @@
     "react-scripts": "^5.0.0",
     "styled-components": "^5.3.3",
     "typewriter-effect": "^2.18.2",
-    "yup": "^0.32.11",
-    "web3.storage": "^4.0.0"
+    "web3.storage": "^4.0.0",
+    "yup": "^0.32.11"
   },
   "eslintConfig": {
     "extends": [
