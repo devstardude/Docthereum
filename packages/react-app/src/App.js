@@ -19,13 +19,11 @@ import Register from "./components/main/Register";
 import {API_KEY,SUBGRAPH_NAME} from "./constants.js";
 import MyReports from "./components/main/MyReports";
 
-
-function WalletButton() {
+function WalletButton(props) {
   const [rendered, setRendered] = useState("");
 
   const ens = useLookupAddress();
   const { account, activateBrowserWallet, deactivate, error } = useEthers();
-
   useEffect(() => {
     if (ens) {
       setRendered(ens);
@@ -41,7 +39,6 @@ function WalletButton() {
       console.error("Error while connecting wallet:", error.message);
     }
   }, [error]);
-
   return (
     <div
       onClick={() => {
@@ -59,27 +56,9 @@ function WalletButton() {
 }
 
 function App() {
-  const contract= new Contract(addresses.DocAddress, abis.docthereum)
-  const {account} = useEthers();
-
-  //graph data below
-  const APIURL = `https://api.studio.thegraph.com/query/24067/docthereum-subgraph/v0.0.3`
-
-  const client = new ApolloClient({
-    uri: APIURL,
-    cache: new InMemoryCache(),
-  })
-  
-  client
-  .query({
-    query: GET_REPORTS_SAVED,// three queries : GET_DOC_AUTHS, GET_LAB_AUTHS,GET_REPORTS_SAVED
-                        // queries are customisable , edit in ./subgraph.js
-  })
-  .then((data) => console.log('Subgraph data: ', data))//visualise this data
-  .catch((err) => {
-    console.log('Error fetching data: ', err)
-  })
-
+  const [address,setAddress]=useState(null)
+  const contract = new Contract(addresses.DocAddress, abis.docthereum);
+  const { account } = useEthers();
   return (
     <React.Fragment className="App overflow-x-hidden">
       <Router>
@@ -90,11 +69,12 @@ function App() {
         </Navbar>
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/upload" element={<UploadPdf contract={contract}/>} />
-          <Route path="/register" element={<Register contract={contract} account= {account}/>} />
-
           <Route path="/myreports" element={<MyReports />} />
-
+          <Route path="/upload" element={<UploadPdf contract={contract} />} />
+          <Route
+            path="/register"
+            element={<Register contract={contract} account={account} />}
+          />
         </Routes>
       </Router>
     </React.Fragment>

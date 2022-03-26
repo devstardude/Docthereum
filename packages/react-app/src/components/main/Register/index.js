@@ -1,6 +1,6 @@
 import React from "react";
 import BackgroundLayout from "../../shared/BackgroundLayout";
-import CustomInput from "../../shared/CustomInput";
+import { CustomFormikInput} from "../../shared/CustomInput";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import "./style.css";
@@ -18,13 +18,10 @@ const Register = (props) => {
   const {state, send} = useContractFunction(props.contract,openTab==0? 'addAuthLab':'addAuthDoc'); 
   const {status} = state;
   const authorise = async (account,name,id)=>{
-    
     await send(account,name,id)
-
   }
   
   const dataSubmitHandler = async (values, { setSubmitting, resetForm }) => {
-
       await authorise(props.account,values.name,values.uid).then(()=>{
         console.log(status);
       }).catch(err=>console.log)
@@ -53,7 +50,7 @@ const Register = (props) => {
           <Formik
             initialValues={{
               name: "",
-              wallet: "x0as2930923018239",
+              wallet: props.account,
               uid: "",
             }}
             validationSchema={Yup.object({
@@ -67,14 +64,14 @@ const Register = (props) => {
           >
             {({ setFieldValue, ...props }) => (
               <Form>
-                <CustomInput label="Name" name="name" placeholder="Name here" />
-                <CustomInput
+                <CustomFormikInput label="Name" name="name" placeholder="Name here" />
+                <CustomFormikInput
                   disabled={true}
                   label="Wallet"
                   name="wallet"
                   placeholder="Wallet ID"
                 />
-                <CustomInput
+                <CustomFormikInput
                   label="Unique ID"
                   name="uid"
                   placeholder="Tell us your unique id"
