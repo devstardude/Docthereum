@@ -4,11 +4,12 @@ import'./style.css';
 const Button = (props) => {
   return (
     <div className={props.className}>
-      <div
+      <button
         className="Button"
+        type = "submit"
       >
         {props.children}
-      </div>
+      </button>
     </div>
   );
 };
