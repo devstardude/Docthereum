@@ -4,7 +4,7 @@ import'./style.css';
 const Button = (props) => {
   return (
     <div className={props.className}>
-      <button
+      <button type="submit"
         className="Button"
         type = "submit"
       >

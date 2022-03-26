@@ -16,6 +16,7 @@ import { addresses, abis } from "@my-app/contracts";
 import GET_TRANSFERS from "./graphql/subgraph";
 import UploadPdf from "./components/main/UploadPdf";
 import Register from "./components/main/Register";
+import MyReports from "./components/main/MyReports";
 
 
 function WalletButton() {
@@ -71,6 +72,9 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/upload" element={<UploadPdf contract={contract}/>} />
           <Route path="/register" element={<Register contract={contract} account= {account}/>} />
+
+          <Route path="/myreports" element={<MyReports />} />
+
         </Routes>
       </Router>
     </React.Fragment>

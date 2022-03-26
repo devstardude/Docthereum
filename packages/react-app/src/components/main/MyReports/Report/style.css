@@ -1,0 +1,16 @@
+.ReportCard {
+  @apply m-[20px] p-[20px] w-[800px] min-h-[100px] rounded-lg shadow-xl transition-all;
+}
+
+.ReportCard:hover {
+    @apply shadow-xl  ;
+  transform: scale(1.01);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1600px) {
+  .cards {
+    justify-content: center;
+  }
+}
