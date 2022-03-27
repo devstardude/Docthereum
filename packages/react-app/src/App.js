@@ -59,8 +59,27 @@ function App() {
   const [address,setAddress]=useState(null)
   const contract = new Contract(addresses.DocAddress, abis.docthereum);
   const { account } = useEthers();
+
+  // use to tell if doctor variable: isDoctor 
+  const { error: contractError1, value: isDoctor } =
+  useCall({
+    contract: contract,
+    method: "AuthorisedDoc",
+    args: [account],
+  }) ?? {};
+  console.log(isDoctor);
+  
+  //use to tell if lab variable: isLab
+  const { error: contractCallError2, value: isLab } =
+  useCall({
+    contract: contract,
+    method: "AuthorisedLab",
+    args: [account],
+  }) ?? {};
+  console.log(isLab);
+  
   //graph data below
-  const APIURL = `https://api.studio.thegraph.com/query/24067/docthereum-subgraph/v0.0.3`
+  const APIURL = `https://api.studio.thegraph.com/query/24067/docthereum-graph/v0.0.2`
 
   const client = new ApolloClient({
     uri: APIURL,
@@ -86,8 +105,8 @@ function App() {
         </Navbar>
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/myreports" element={<MyReports />} />
-          <Route path="/search" element={<SearchReports />} />
+          <Route path="/myreports" element={<MyReports contract={contract} account={account}/>} />
+          <Route path="/search" element={<SearchReports contract={contract} />} />
           <Route path="/upload" element={<UploadPdf contract={contract} />} />
           <Route
             path="/register"
