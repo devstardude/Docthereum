@@ -12,6 +12,7 @@ const navigation = [
   { name: "My Reports", href: "/myreports", current: false },
   { name: "Register", href: "/register", current: false },
   { name: "Search", href: "/search", current: false },
+  { name: "Graph", href: "/graph", current: false },
 ];
 
 function classNames(...classes) {
