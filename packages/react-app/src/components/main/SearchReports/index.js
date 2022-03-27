@@ -4,12 +4,26 @@ import { CustomInput } from "../../shared/CustomInput";
 import MastTitle from "../../shared/MastTitle";
 import CustomButton from "../../shared/CustomButton";
 //import'./style.css';
+import {
+  useCall
+} from "@usedapp/core";
+
 
 const SearchReports = (props) => {
   const [query, setQuery] = useState("");
   const SearchHandler = () => {
       console.log(query)
+    
   };
+
+  const { error: contractCallError, value: report } =
+  useCall({
+    contract: props.contract,
+    method: "getUserReports",
+    args: [query],//replace with props.cid
+  }) ?? {};
+  console.log(report);// yahan ek reports ka daalna hoga tujhe report show krne ke liye
+
   return (
     <React.Fragment>
       <BackgroundLayout />
@@ -27,6 +41,7 @@ const SearchReports = (props) => {
         <CustomButton onClick={SearchHandler}>
           <p className="px-[1.5rem] py-[2px] text-[20px]">Search</p>
         </CustomButton>
+       
       </div>
     </React.Fragment>
   );

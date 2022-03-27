@@ -4,6 +4,30 @@ import { MdBloodtype } from "react-icons/md";
 import { GiBabyFace, GiWeightScale } from "react-icons/gi";
 import Tooltip from "@mui/material/Tooltip";
 import "./style.css";
+import {
+  useCall
+} from "@usedapp/core";
+import { Web3Storage } from 'web3.storage';
+import {WEB3STORAGE_TOKEN} from '../../../../constants.js'
+
+
+function makeStorageClient () {
+  return new Web3Storage({ token: WEB3STORAGE_TOKEN })
+}
+async function retrieveFiles (cid) {
+  const client = makeStorageClient()
+  const res = await client.get(cid)
+  console.log(`Got a response! [${res.status}] ${res.statusText}`)
+  if (!res.ok) {
+    throw new Error(`failed to get ${cid} - [${res.status}] ${res.statusText}`)
+  }
+
+  // unpack File objects from the response
+  const files = await res.files()
+  for (const file of files) {
+    console.log(file)
+  }
+}
 
 const Report = (props) => {
   const gradients = [
@@ -16,6 +40,17 @@ const Report = (props) => {
     "bg-gradient-to-r from-teal-200/50 to-lime-200/50",
   ];
   const random = Math.floor(Math.random() * gradients.length);
+
+  const { error: contractCallError, value: report } =
+  useCall({
+    contract: props.contract,
+    method: "GetDetailedReport",
+    args: ["bafybeidqp7277ufkoz6usdpvkltjdvglaqgaemzswv5sfg6gqwwwqklk24"],//replace with props.cid
+  }) ?? {};
+  console.log(report);
+  
+  retrieveFiles("bafybeiarnwulhdwinpaxl3fgdebffqycihkyrdbzifkohpnnzog3bwrnuq")// replace with props.cid
+
   return (
     <React.Fragment>
       <div className="flex justify-center items-center pt-[2rem]">

@@ -30,7 +30,8 @@ export const GET_REPORTS_SAVED = gql(`
     patientName
     labName
     addedAt
-    id
+    fileId
+    category
   }
 }
 `);

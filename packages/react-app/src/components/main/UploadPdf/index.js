@@ -101,21 +101,23 @@ const UploadPdf = (props) => {
   }
 
   const { state, send } = useContractFunction(props.contract, "SaveReport");
-  const uploadToBlokchain = async (cid, userAddress) => {
-    const result = await send(cid, userAddress);
+  const uploadToBlokchain = async (cid, userAddress,category) => {
+    const result = await send(cid, userAddress,category);//replace with value from category
 
     console.log(state.errorMessage);
     //use state to show progress : minting, succes or failure
     // do something with result : true or false
   };
 
-  const pdfUploadHandler = async () => {
+  const pdfUploadHandler = async (event) => {
     // take pdf file from state and upload
+    event.preventDefault()
     console.log(pdfFile);
     const file = makeFileObject(pdfFile);
     storeWithProgress(file).then((id) => {
       console.log("uploading to chain...");
-      uploadToBlokchain(id, patientAddress);
+      uploadToBlokchain(id, patientAddress,reportCategory);//yahan category ki argument daalni he jese patient ki thi
+      console.log("uploaded");
     });
   };
 
