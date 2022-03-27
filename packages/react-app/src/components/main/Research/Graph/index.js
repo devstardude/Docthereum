@@ -9,7 +9,11 @@ import {
   Legend,
 } from "recharts";
 import BackgroundLayout from "../../shared/BackgroundLayout";
-import { occurrencesCalculator, checkOccuranceValue,nameGenerator } from "./utils";
+import {
+  occurrencesCalculator,
+  checkOccuranceValue,
+  nameGenerator,
+} from "./utils";
 //import'./style.css';
 
 const Graph = (props) => {
@@ -30,47 +34,23 @@ const Graph = (props) => {
     return occurrencesCalculator(arrayOfDays);
   };
   const occuranceObject = modifyArray();
-  console.log(occuranceObject);
   const data = [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19,
-    20,
-    21,
-    22,
-    23,
-    24,
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+    22, 23, 24,
   ];
   const chartRawArray = [];
   const dataRawGenerator = () => {
     for (const i of data) {
-      const uvValue = checkOccuranceValue(occuranceObject, i-1);
+      const uvValue = checkOccuranceValue(occuranceObject, i - 1);
       chartRawArray.push({
         Submissions: nameGenerator(i),
         Time: uvValue,
       });
     }
   };
-  dataRawGenerator()
+  dataRawGenerator();
   return (
     <React.Fragment>
-      <BackgroundLayout />
       <div className="pt-[5rem] h-full w-full overflow-x-auto">
         {props.graphData && (
           <LineChart width={800} height={400} data={chartRawArray}>

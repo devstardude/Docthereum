@@ -13,11 +13,10 @@ export const checkOccuranceValue = (object, key) => {
   }
 };
 
-export const nameGenerator = (number)=>{
-    if(number < 10){
-        return ("0"+String(number))
-    } else {
-        return String(number)
-    }
-
-}
+export const nameGenerator = (number) => {
+  if (number < 10) {
+    return "0" + String(number);
+  } else {
+    return String(number);
+  }
+};

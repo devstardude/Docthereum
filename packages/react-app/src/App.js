@@ -22,7 +22,7 @@ import Register from "./components/main/Register";
 import { API_KEY, SUBGRAPH_NAME } from "./constants.js";
 import MyReports from "./components/main/MyReports";
 import SearchReports from "./components/main/SearchReports";
-import Graph from "./components/main/Graph";
+import Research from "./components/main/Research";
 
 function WalletButton(props) {
   const [rendered, setRendered] = useState("");
@@ -65,6 +65,8 @@ function App() {
   const [subgraphData, setSubgraphData] = useState(null);
   const contract = new Contract(addresses.DocAddress, abis.docthereum);
   const { account } = useEthers();
+  const APIURL =
+    "https://api.studio.thegraph.com/query/24067/docthereum-graph/v0.0.2";
 
   // use to tell if doctor variable: isDoctor 
   const { error: contractError1, value: isDoctor } =
@@ -103,6 +105,7 @@ function App() {
       .then((data) => {
         console.log("App Subgraph data: ", data.data.reportSavedEntities);
         const reponse = data.data.reportSavedEntities
+        console.log("App", reponse);
         setSubgraphData(reponse);
       }) //visualise this data
       .catch((err) => {
@@ -127,7 +130,7 @@ function App() {
             path="/register"
             element={<Register contract={contract} account={account} />}
           />
-          <Route path="/graph" element={<Graph graphData={subgraphData} />} />
+          <Route path="/research" element={<Research graphData={subgraphData} />} />
           <Route path="*" element={<Landing />} />
         </Routes>
       </Router>
