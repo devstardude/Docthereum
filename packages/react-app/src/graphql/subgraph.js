@@ -1,15 +1,37 @@
 import { gql } from "@apollo/client";
 
 // See more example queries on https://thegraph.com/explorer/subgraph/paulrberg/create-eth-app
-const GET_TRANSFERS = gql`
+export const GET_DOC_AUTHS = gql(`
   {
-    transfers(first: 10) {
+    docAuthorisedEntities {
       id
-      from
-      to
-      value
+      count
+      name
+      _authAddre
     }
   }
-`;
+`);
+export const GET_LAB_AUTHS = gql(`
+{
+  labAuthorisedEntities {
+    id
+    count
+    name
+    _authAddre
+  }
+}
+`);
 
-export default GET_TRANSFERS;
+export const GET_REPORTS_SAVED = gql(`
+{
+  reportSavedEntities {
+    id
+    count
+    patientName
+    labName
+    addedAt
+    id
+  }
+}
+`);
+  

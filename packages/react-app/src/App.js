@@ -1,4 +1,4 @@
-import { useQuery } from "@apollo/client";
+import { useQuery, ApolloClient, InMemoryCache, } from "@apollo/client";
 import {
   shortenAddress,
   useCall,
@@ -12,9 +12,10 @@ import CustomButton from "./components/shared/CustomButton";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { Contract } from "@ethersproject/contracts";
 import { addresses, abis } from "@my-app/contracts";
-import GET_TRANSFERS from "./graphql/subgraph";
+import {GET_DOC_AUTHS,GET_LAB_AUTHS,GET_REPORTS_SAVED} from "./graphql/subgraph";
 import UploadPdf from "./components/main/UploadPdf";
 import Register from "./components/main/Register";
+import {API_KEY,SUBGRAPH_NAME} from "./constants.js";
 import MyReports from "./components/main/MyReports";
 import SearchReports from "./components/main/SearchReports";
 
@@ -58,6 +59,23 @@ function App() {
   const [address,setAddress]=useState(null)
   const contract = new Contract(addresses.DocAddress, abis.docthereum);
   const { account } = useEthers();
+  //graph data below
+  const APIURL = `https://api.studio.thegraph.com/query/24067/docthereum-subgraph/v0.0.3`
+
+  const client = new ApolloClient({
+    uri: APIURL,
+    cache: new InMemoryCache(),
+  })
+  
+  client
+  .query({
+    query: GET_REPORTS_SAVED,// three queries : GET_DOC_AUTHS, GET_LAB_AUTHS,GET_REPORTS_SAVED
+                        // queries are customisable , edit in ./subgraph.js
+  })
+  .then((data) => console.log('Subgraph data: ', data))//visualise this data
+  .catch((err) => {
+    console.log('Error fetching data: ', err)
+  })
   return (
     <React.Fragment className="App overflow-x-hidden">
       <Router>
