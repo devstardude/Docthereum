@@ -25,8 +25,6 @@ const Register = (props) => {
       await authorise(props.account,values.name,values.uid).then(()=>{
         console.log(status);
       }).catch(err=>console.log)
-    
-
     setSubmitting(false);
     resetForm();
     // history.push(`/user/${auth.userId}`);

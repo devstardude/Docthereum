@@ -18,12 +18,12 @@ import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 import "./style.css";
 import { WEB3STORAGE_TOKEN } from "@my-app/react-app/src/constants.js";
 import { Buffer } from "buffer";
-import {CustomInput} from "../../shared/CustomInput";
+import { CustomInput } from "../../shared/CustomInput";
 import CustomButton from "../../shared/CustomButton";
 import MastTitle from "../../shared/MastTitle";
-import ConnectGoogleFit from "./ConnectGoogleFit";
 const UploadPdf = (props) => {
   const [patientAddress, setPatientAddress] = useState("");
+  const [reportCategory, setReportCategory] = useState("");
 
   // creating new plugin instance
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
@@ -151,14 +151,17 @@ const UploadPdf = (props) => {
                     label="Enter Address"
                     placeholder="Enter wallet address of the patient"
                   />
+                  <CustomInput
+                    onChange={(e)=>setReportCategory(e.target.value)}
+                    label="Enter Category of the report"
+                    placeholder="For example: Blood Report"
+                  />
                 </div>
                 <CustomButton onClick={pdfUploadHandler} type="submit">
                   <p className="px-5 py-[2px]">Upload PDF</p>
                 </CustomButton>
               </div>
-              <div>
-                <ConnectGoogleFit/>
-              </div>
+              <div></div>
               <div className="flex justify-center items-center pt-4">
                 {pdfError && <span className="text-danger">{pdfError}</span>}
                 {!pdfFile && <>No file is selected yet</>}
