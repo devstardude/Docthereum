@@ -1,5 +1,4 @@
 import { useQuery, ApolloClient, InMemoryCache, } from "@apollo/client";
-
 import {
   shortenAddress,
   useCall,
@@ -18,6 +17,7 @@ import UploadPdf from "./components/main/UploadPdf";
 import Register from "./components/main/Register";
 import {API_KEY,SUBGRAPH_NAME} from "./constants.js";
 import MyReports from "./components/main/MyReports";
+import SearchReports from "./components/main/SearchReports";
 
 function WalletButton(props) {
   const [rendered, setRendered] = useState("");
@@ -87,11 +87,13 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/myreports" element={<MyReports />} />
+          <Route path="/search" element={<SearchReports />} />
           <Route path="/upload" element={<UploadPdf contract={contract} />} />
           <Route
             path="/register"
             element={<Register contract={contract} account={account} />}
           />
+          <Route path="*" element={<Landing />} />
         </Routes>
       </Router>
     </React.Fragment>

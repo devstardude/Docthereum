@@ -21,6 +21,7 @@ import { Buffer } from "buffer";
 import {CustomInput} from "../../shared/CustomInput";
 import CustomButton from "../../shared/CustomButton";
 import MastTitle from "../../shared/MastTitle";
+import ConnectGoogleFit from "./ConnectGoogleFit";
 const UploadPdf = (props) => {
   const [patientAddress, setPatientAddress] = useState("");
 
@@ -141,7 +142,6 @@ const UploadPdf = (props) => {
                       Select a file
                     </span>
                   </div>
-
                   <input type="file" onChange={handleFile} class="hidden" />
                 </label>
                 <div className=" w-[15rem] md:w-[25rem]">
@@ -151,10 +151,12 @@ const UploadPdf = (props) => {
                     placeholder="Enter wallet address of the patient"
                   />
                 </div>
-
-                <CustomButton onClick={pdfUploadHandler} type="button">
+                <CustomButton onClick={pdfUploadHandler} type="submit">
                   <p className="px-5 py-[2px]">Upload PDF</p>
                 </CustomButton>
+              </div>
+              <div>
+                <ConnectGoogleFit/>
               </div>
               <div className="flex justify-center items-center pt-4">
                 {pdfError && <span className="text-danger">{pdfError}</span>}
