@@ -2,15 +2,16 @@ import React from "react";
 import Typewriter from "typewriter-effect";
 import BackgroundIcons from "./BackgroundIcons";
 import { BiChevronsDown } from "react-icons/bi";
-import { motion } from "framer-motion";
 import "./style.css";
 import BackgroundLayout from "../../shared/BackgroundLayout";
 import InfoDivs from "./InfoDivs";
+import { motion, AnimatePresence } from "framer-motion";
+import Counter from "./Counter";
 
 const Landing = (props) => {
   return (
     <div>
-      <BackgroundLayout/>
+      <BackgroundLayout />
       <div className="Landing">
         <BackgroundIcons />
         <div className="TitleBox">
@@ -50,7 +51,9 @@ const Landing = (props) => {
           </div>
         </div>
       </div>
-      <InfoDivs/>
+      <InfoDivs />
+      <div className="text-[50px]">
+      </div>
     </div>
   );
 };

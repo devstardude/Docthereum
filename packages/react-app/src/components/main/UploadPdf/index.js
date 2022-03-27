@@ -23,6 +23,7 @@ import CustomButton from "../../shared/CustomButton";
 import MastTitle from "../../shared/MastTitle";
 const UploadPdf = (props) => {
   const [patientAddress, setPatientAddress] = useState("");
+  const [reportCategory, setReportCategory] = useState("");
 
   // creating new plugin instance
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
@@ -148,6 +149,11 @@ const UploadPdf = (props) => {
                     onChange={handleAddress}
                     label="Enter Address"
                     placeholder="Enter wallet address of the patient"
+                  />
+                  <CustomInput
+                    onChange={(e)=>setReportCategory(e.target.value)}
+                    label="Enter Category of the report"
+                    placeholder="For example: Blood Report"
                   />
                 </div>
                 <CustomButton onClick={pdfUploadHandler} type="submit">
