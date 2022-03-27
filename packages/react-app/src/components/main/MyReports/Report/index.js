@@ -1,8 +1,7 @@
 import React from "react";
-import { FaFileMedicalAlt, FaWaveSquare } from "react-icons/fa";
-import { BsSuitHeartFill } from "react-icons/bs";
-import { RiRunFill } from "react-icons/ri";
-import { GiNightSleep } from "react-icons/gi";
+import { FaFileMedicalAlt, FaMale } from "react-icons/fa";
+import { MdBloodtype } from "react-icons/md";
+import { GiBabyFace, GiWeightScale } from "react-icons/gi";
 import Tooltip from "@mui/material/Tooltip";
 import "./style.css";
 
@@ -43,36 +42,34 @@ const Report = (props) => {
               </p>
               <div className="flex">
                 <p>
-                  <span className="font-bold">Google Fit Data: </span>
+                  <span className="font-bold">General Information: </span>
                 </p>
                 <div className="flex flex-wrap justify-center items-center">
-                  <Tooltip title="Average Heart Rate">
+                  <Tooltip title="Gender">
                     <div className="border-2 border-gray-600 dark:border-gray-300 rounded-[100%] mx-2 my-2 md:my-0 p-2">
-                      <BsSuitHeartFill />
+                      <FaMale />
                     </div>
                   </Tooltip>
-                  <p>99</p>
-                  <Tooltip title="Average Sleep">
+                  <p>Male</p>
+                  <Tooltip title="Age group">
                     <div className="border-2 border-gray-600 dark:border-gray-300 rounded-[100%] mx-2 my-2 md:my-0 p-2">
-                      <GiNightSleep />
+                      <GiBabyFace />
+                    </div>
+                  </Tooltip>
+                  <p>22</p>
+                  <Tooltip title="Blood Group">
+                    <div className="border-2 border-gray-600 dark:border-gray-300 rounded-[100%] mx-2 my-2 md:my-0 p-2">
+                      <MdBloodtype />
+                    </div>
+                  </Tooltip>
+                  <p>A+</p>
+                  <Tooltip title="Body Weight">
+                    <div className="border-2 border-gray-600 dark:border-gray-300 rounded-[100%] mx-2 my-2 md:my-0 p-2">
+                      <GiWeightScale />
                     </div>
                   </Tooltip>
 
-                  <p>99</p>
-                  <Tooltip title="Average Activity">
-                    <div className="border-2 border-gray-600 dark:border-gray-300 rounded-[100%] mx-2 my-2 md:my-0 p-2">
-                      <RiRunFill />
-                    </div>
-                  </Tooltip>
-
-                  <p>99</p>
-                  <Tooltip title="Average Stress">
-                    <div className="border-2 border-gray-600 dark:border-gray-300 rounded-[100%] mx-2 my-2 md:my-0 p-2">
-                      <FaWaveSquare />
-                    </div>
-                  </Tooltip>
-
-                  <p>99</p>
+                  <p>60 Kg</p>
                 </div>
               </div>
             </div>
