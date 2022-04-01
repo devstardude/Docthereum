@@ -16,7 +16,7 @@ const InfoDivs = (props) => {
             <div className=" flex items-center justify-center h-[25rem]">
               <iframe
                 title={item.title}
-                className=" relative h-full z-10 pointer-events-none"
+                className= {`relative h-full z-10 pointer-events-none ${item.invert &&"dark:invert"}`}
                 src={item.frame}
               ></iframe>
             </div>
@@ -53,10 +53,10 @@ const data = [
     rev: true,
   },
   {
-    frame: "https://embed.lottiefiles.com/animation/34758",
-    title: " Connect Google fit",
-    subtitle:
-      "and send one week of wellness data along with the health report to enhance insights and treatment",
+    frame: "https://embed.lottiefiles.com/animation/69383",
+    title: "Remain Anonymous.",
+    subtitle: "your medical data can't be tracked back to your real identity",
+    invert:true
   },
 ];
 
