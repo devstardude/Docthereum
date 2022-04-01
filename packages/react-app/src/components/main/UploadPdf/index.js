@@ -72,7 +72,6 @@ const UploadPdf = (props) => {
     console.log(uniqueId);
 
     const file = [new File([buffer], uniqueId)];
-
     return file;
   }
 

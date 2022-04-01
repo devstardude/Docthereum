@@ -114,7 +114,7 @@ function App() {
   }, []);
 
   return (
-    <React.Fragment className="App overflow-x-hidden">
+    <div className="App overflow-x-hidden">
       <Router>
         <Navbar>
           <CustomButton className="hidden md:block pr-3">
@@ -134,7 +134,7 @@ function App() {
           <Route path="*" element={<Landing />} />
         </Routes>
       </Router>
-    </React.Fragment>
+    </div>
   );
 }
 

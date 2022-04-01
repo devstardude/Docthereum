@@ -32,7 +32,8 @@ const Report = (props) => {
     const pdfFileResponse = async () => {
       const pdfResponse = await retrieveFiles(props.cid);
       console.log("pdfResposnse", pdfResponse[0]);
-      setPdfFile(pdfResponse);
+       setPdfFile({ fileCid: pdfResponse[0].cid, fileName: pdfResponse[0].name });
+       console.log("pdfFileProps", pdfFile);
     };
     pdfFileResponse();
   }, []);

@@ -1,6 +1,6 @@
 .ModalComponent-Wrapper {
   @apply p-5 z-10 border-2 border-white/50;
-  @apply w-[90%] sm:w-[75%] md:w-[50%];
+  @apply w-[90%] sm:w-[85%] md:w-[80%];
   background: rgb(15, 22, 36, 0.5);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);

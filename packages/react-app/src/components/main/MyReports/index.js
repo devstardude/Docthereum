@@ -15,7 +15,6 @@ const MyReports = (props) => {
       method: "getUserReports",
       args: [props.account],
     }) ?? {};
-  console.log("Reports", reports);
 
   return (
     <React.Fragment>
