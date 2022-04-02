@@ -5,6 +5,7 @@ import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
 import useDarkMode from "../../hooks/useDarkMode";
+import { useEthers } from "@usedapp/core";
 import { NavLink } from "react-router-dom";
 const navigation = [
   { name: "Home", href: "/", current: true },
@@ -21,6 +22,7 @@ function classNames(...classes) {
 
 export default function Navbar(props) {
   const [theme, setTheme] = useDarkMode();
+  const { account, activateBrowserWallet, deactivate, error } = useEthers();
   const [currentPage, setCurrentPage] = useState(0);
   return (
     <Disclosure
@@ -60,11 +62,11 @@ export default function Navbar(props) {
                   <div className="flex space-x-4">
                     {navigation.map((item, index) => (
                       <NavLink
-                      onClick={()=>setCurrentPage(index)}
+                        onClick={() => setCurrentPage(index)}
                         key={item.name}
                         to={item.href}
                         className={classNames(
-                          currentPage===index
+                          currentPage === index
                             ? "bg-gray-900 text-white"
                             : "dark:text-gray-300 text-gray-700 hover:bg-gray-700 hover:text-white",
                           "px-3 py-2 rounded-md text-sm font-medium"
@@ -110,30 +112,37 @@ export default function Navbar(props) {
                       />
                     </Menu.Button>
                   </div>
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-100"
-                    enterFrom="transform opacity-0 scale-95"
-                    enterTo="transform opacity-100 scale-100"
-                    leave="transition ease-in duration-75"
-                    leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
-                  >
-                    <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      <Menu.Item>
-                        {({ active }) => (
-                          <div
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Sign out
-                          </div>
-                        )}
-                      </Menu.Item>
-                    </Menu.Items>
-                  </Transition>
+                  {account && (
+                    <Transition
+                      as={Fragment}
+                      enter="transition ease-out duration-100"
+                      enterFrom="transform opacity-0 scale-95"
+                      enterTo="transform opacity-100 scale-100"
+                      leave="transition ease-in duration-75"
+                      leaveFrom="transform opacity-100 scale-100"
+                      leaveTo="transform opacity-0 scale-95"
+                    >
+                      <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                        <Menu.Item>
+                          {({ active }) => (
+                            <div
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                              onClick={() => {
+                                if (account) {
+                                  deactivate();
+                                }
+                              }}
+                            >
+                              Sign out
+                            </div>
+                          )}
+                        </Menu.Item>
+                      </Menu.Items>
+                    </Transition>
+                  )}
                 </Menu>
               </div>
             </div>
