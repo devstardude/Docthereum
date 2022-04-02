@@ -100,8 +100,8 @@ const UploadPdf = (props) => {
   }
 
   const { state, send } = useContractFunction(props.contract, "SaveReport");
-  const uploadToBlokchain = async (cid, userAddress,category) => {
-    const result = await send(cid, userAddress,category);//replace with value from category
+  const uploadToBlokchain = async (cid, userAddress,category,age,height,weight,blood_group,gender) => {
+    const result = await send(cid, userAddress,category,[19,172,50,"b+","M"]);//[age,height,weight,blood_group,gender]==[int,int,int,string,string]
 
     console.log(state.errorMessage);
     //use state to show progress : minting, succes or failure

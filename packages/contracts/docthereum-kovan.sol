@@ -16,8 +16,8 @@ contract Docthereum is ChainlinkClient{
     setPublicChainlinkToken();
 
     //currently hardcoded for development purposes
-    oracle = 0x7AFe1118Ea78C1eae84ca8feE5C65Bc76CcF879e;
-    jobId = "c8084988f0b54520ba17945c4a2ab7bc";
+    oracle = 0xc57B33452b4F7BB189bB5AfaE9cc4aBa1f7a4FD8;
+    jobId = "d5270d1c311941d0b08bead21fea7747";
     fee = 0.1 * 10 ** 18; // (Varies by network and job)
   }
   
@@ -28,7 +28,6 @@ contract Docthereum is ChainlinkClient{
     int256 height;
     int256 weight;
     string bloodGroup;
-    string gender;
   }
 
   struct File {
@@ -93,8 +92,7 @@ contract Docthereum is ChainlinkClient{
       int256 age,
       int256 height,
       int256 weight,
-      string bloodGroup,
-      string gender  
+      string bloodGroup  
   );
 
   modifier OnlyOwner(){
@@ -128,8 +126,6 @@ contract Docthereum is ChainlinkClient{
     return AuthDetails[_address];
   }
 
-// this is fully functional but unfortunately chainlink rinkeby version was down, so we have provided alternative 
-// authorisation for the moment :( 
   function checkAuthorisation(string memory name, string memory id, uint256 applyId) public returns (bytes32 requestId) 
   {
     require(applyId==0 || applyId==1,"Apply id should be either 0 or 1");
@@ -181,7 +177,7 @@ contract Docthereum is ChainlinkClient{
   
     Files[_fileHash] = _file;
 
-    emit ReportSaved(_fileHash,category,user_address,msg.sender,block.timestamp,_generalInfo.age,_generalInfo.height,_generalInfo.weight,_generalInfo.bloodGroup,_generalInfo.gender);
+    emit ReportSaved(_fileHash,category,user_address,msg.sender,block.timestamp,_generalInfo.age,_generalInfo.height,_generalInfo.weight,_generalInfo.bloodGroup);
     return true;
   }
 
@@ -209,11 +205,10 @@ contract Docthereum is ChainlinkClient{
     return true;
   }
 
-  // these are public only for development and showcase purposes, we were unable to verify because
-  // chainlink rinkeby is currently in maintainence :(
-  // you can test the working version on kovan at 0x6DdD958591974891eD4819cDF9a269DaEc3C55A7, unfortunately
-  // we cant deploy grapgh on kovan, so we had to stay with rinkeby.
-  function addAuthLab(address _authAddress,string memory name, string memory _authId ) public {
+  // function withdrawLink() external OnlyOwner {
+
+  // }
+  function addAuthLab(address _authAddress,string memory name, string memory _authId ) private {
     require(!AuthorisedLab[_authAddress],"Already registered!");
 
     Labs.push(_authAddress);
@@ -229,7 +224,7 @@ contract Docthereum is ChainlinkClient{
     emit LabAuthorised(name,_authAddress,_authId,block.timestamp); //emit an event when new authorisation is given
   }
 
-  function addAuthDoc(address _authAddress,string memory name, string memory _authId ) public {
+  function addAuthDoc(address _authAddress,string memory name, string memory _authId ) private {
     require(!AuthorisedDoc[_authAddress],"Already registered!");
     
     Doctors.push(_authAddress);
