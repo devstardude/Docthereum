@@ -1,135 +1,53 @@
-This project was bootstrapped with [Create Eth App](https://github.com/paulrberg/create-eth-app).
+# Docthereum 🩺
+A dapp to maintain anonymous medical reports and aid seamless healthcare across the globe 🌎.
+<p align="left">
+  <img width="70%" src="https://i.ibb.co/y5DQz8r/Screenshot-84.png">
+</p>
 
-## Project Structure
+## The problem it solves
+## 1. Storage 📂
+  The traditional method of keeping records that is followed in most of the hospitals across India is the manual method 
+  involving papers and books. There are serious limitations of manual record keeping including the need for large storage 
+  areas and difficulties in the retrieval of records.And the possibility of easy manipulation without detection is a serious 
+  concern.
+=> **Docthereum stores records over decentralised network and records cannot be tampered with.** 
 
-The default template is a monorepo created with [Yarn Workspaces](https://classic.yarnpkg.com/en/docs/workspaces/).
+## 2. Anonymity 🎭
+Another major concern is maintaining confidentiality of the patient records as the patient can hold the doctor and the 
+  hospital negligent for breaking confidentiality of his medical records
+=> **We maintain the records linked to patients Ethereum's public address, hence providing anonymity to the patient.
+  And the identity of patient remains confidential.**
 
-Workspaces makes it possible to setup multiple packages in such a way that we only need to run `yarn install` once to install all of them in
-a single pass. Dependencies are hoisted at the root.
+## 3. Research 👩‍🔬
+Research includes increased efforts to use stored medical records as a source of data for health services, epidemiologic, and clinical studies. Given that it can be cumbersome, if not impossible, to find and seek consent from patients whose current or past records might be used.
+=>**Since, we maintain our reports anonymously, and they cant be traced back to the patient himself, they can be provided to researchers to aid in their studies.**
 
-```
-my-eth-app
-├── README.md
-├── node_modules
-├── package.json
-├── .gitignore
-└── packages
-    ├── contracts
-    │   ├── README.json
-    │   ├── package.json
-    │   └── src
-    │       ├── abis
-    │       │   ├── erc20.json
-    │       │   └── ownable.json
-    │       ├── addresses.js
-    │       └── index.js
-    ├── react-app
-    │   ├── README.md
-    │   ├── node_modules
-    │   ├── package.json
-    │   ├── public
-    │   │   ├── favicon.ico
-    │   │   ├── index.html
-    │   │   ├── logo192.png
-    │   │   ├── logo512.png
-    │   │   ├── manifest.json
-    │   │   └── robots.txt
-    │   └── src
-    │       ├── App.css
-    │       ├── App.js
-    │       ├── App.test.js
-    │       ├── ethereumLogo.svg
-    │       ├── index.css
-    │       ├── index.js
-    │       ├── serviceWorker.js
-    │       └── setupTests.js
-    └── subgraph
-        ├── README.md
-        ├── abis
-        │   └── erc20.json
-        ├── package.json
-        ├── schema.graphql
-        ├── src
-        │   └── mappings
-        │       ├── tokens.ts
-        │       └── transfers.ts
-        └── subgraph.yaml
-```
 
-Owing to this dependency on Yarn Workspaces, Create Eth App can't be used with npm.
+## Challenges we ran into
+## 1. Verification 🕵️‍♂️
+We had a big problem on how to verify the Doctors and labs without the need of including a 3rd party and at the same time make the process as seamless as possible.
+### Solution :- 
+**We ask doctors or labs for their registration id , which we then use to verify them against an api that 
+verifies them. Using Chainlink, we were able to integrate this functionality into our smart contract , thus making the 
+verification process seamless**
 
-## Available Scripts
+## 2. Different testnets 
+While developing the dapp , we noticed that Chainlink's rinkeby network was in maintainence and we would have to use Kovan network. But soon we realised that the subgraph we were building for the dapp doesnt not support deploying on Kovan network currently.
+### Solution :-
+**We decided to make two instances of the project and deploy the smart contract on both  
+Rinkeby [0xa6a11dF4FAc5c4b148bC91f03FD0919237d16801](https://github.com/devstardude/Docthereum/blob/master/packages/contracts/docthereum.sol)  
+And Kovan [0x6DdD958591974891eD4819cDF9a269DaEc3C55A7](https://github.com/devstardude/Docthereum/blob/master/packages/contracts/docthereum-kovan.sol).  
+So we were able to test the verification functionality on Kovan , all while deploying the subgrapgh on Rinkeby to index the Rinkeby version of the smart contract.**
 
-In the project directory, you can run:
+**Note :-** currently the dapp calls the instance deployed on Rinkeby network.
 
-### React App
+## Technologies we used
+#### 1. Solidity  
+#### 2. IPFS    
+#### 3. TheGraph 
+#### 4. Chainlink 
+#### 5. React 
+#### 6. Web3 
 
-#### `yarn react-app:start`
 
-Runs the React app in development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will automatically reload if you make changes to the code.<br>
-You will see the build errors and lint warnings in the console.
-
-#### `yarn react-app:test`
-
-Runs the React test watcher in an interactive mode.<br>
-By default, runs tests related to files changed since the last commit.
-
-[Read more about testing React.](https://facebook.github.io/create-react-app/docs/running-tests)
-
-#### `yarn react-app:build`
-
-Builds the React app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the React documentation on [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-#### `yarn react-app:eject`
-
-**Note: this is a one-way operation. Once you `react-app:eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` the React app at any time. This command will
-remove the single build dependency from your React package.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right
-into the `react-app` package so you have full control over them. All of the commands except `react-app:eject` will still work,
-but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `react-app:eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-### Subgraph
-
-The Graph is a tool for for indexing events emitted on the Ethereum blockchain. It provides you with an easy-to-use GraphQL API. <br/>
-
-To learn more, check out the [The Graph documentation](https://thegraph.com/docs).
-
-#### `yarn subgraph:codegen`
-
-Generates AssemblyScript types for smart contract ABIs and the subgraph schema.
-
-#### `yarn subgraph:build`
-
-Compiles the subgraph to WebAssembly.
-
-#### `yarn subgraph:auth`
-
-Before deploying your subgraph, you need to sign up on the
-[Graph Explorer](https://thegraph.com/explorer/). There, you will be given an access token. Drop it in the command
-below:
-
-```sh
-GRAPH_ACCESS_TOKEN=your-access-token-here yarn subgraph:auth
-```
-
-#### `yarn subgraph:deploy`
-
-Deploys the subgraph to the official Graph Node.<br/>
-
-Replace `paulrberg/create-eth-app` in the package.json script with your subgraph's name.
-
-You may also want to [read more about the hosted service](https://thegraph.com/docs/quick-start#hosted-service).
+## Test live 🚀 :- https://docthereum.web.app/

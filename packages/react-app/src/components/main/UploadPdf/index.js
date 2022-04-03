@@ -23,9 +23,15 @@ import CustomButton from "../../shared/CustomButton";
 import MastTitle from "../../shared/MastTitle";
 import { CustomFooter } from "../../shared/Footer";
 const UploadPdf = (props) => {
-  const [patientAddress, setPatientAddress] = useState("");
-  const [reportCategory, setReportCategory] = useState("");
-
+  const [inputs, setInputs] = useState({
+    address: "",
+    category: "",
+    age: "",
+    blood: "",
+    weight: "",
+    height: "",
+    gender: "",
+  });
   // creating new plugin instance
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
 
@@ -56,9 +62,15 @@ const UploadPdf = (props) => {
       console.log("please select a PDF");
     }
   };
-  const handleAddress = (e) => {
-    setPatientAddress(e.target.value);
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    console.log("name", name);
+    setInputs((prev) => {
+      return { ...prev, [name]: value };
+    });
+    console.log("inputs", inputs);
   };
+
   function makeStorageClient() {
     return new Web3Storage({ token: WEB3STORAGE_TOKEN });
   }
@@ -69,7 +81,7 @@ const UploadPdf = (props) => {
 
     const buffer = Buffer.from(rawfile);
 
-    let uniqueId = `Report_${patientAddress}_${time}`;
+    let uniqueId = `Report_${inputs.address}_${time}`;
     console.log(uniqueId);
 
     const file = [new File([buffer], uniqueId)];
@@ -101,8 +113,23 @@ const UploadPdf = (props) => {
   }
 
   const { state, send } = useContractFunction(props.contract, "SaveReport");
-  const uploadToBlokchain = async (cid, userAddress,category,age,height,weight,blood_group,gender) => {
-    const result = await send(cid, userAddress,category,[19,172,50,"b+","M"]);
+  const uploadToBlokchain = async (
+    cid,
+    userAddress,
+    category,
+    age,
+    height,
+    weight,
+    blood_group,
+    gender
+  ) => {
+    const result = await send(cid, userAddress, category, [
+      age,
+      height,
+      weight,
+      blood_group,
+      gender
+    ]);
     //[age,height,weight,blood_group,gender]==[int,int,int,string,string]
 
     console.log(state.errorMessage);
@@ -112,12 +139,21 @@ const UploadPdf = (props) => {
 
   const pdfUploadHandler = async (event) => {
     // take pdf file from state and upload
-    event.preventDefault()
+    event.preventDefault();
     console.log(pdfFile);
     const file = makeFileObject(pdfFile);
     storeWithProgress(file).then((id) => {
       console.log("uploading to chain...");
-      uploadToBlokchain(id, patientAddress,reportCategory);//yahan category ki argument daalni he jese patient ki thi
+      uploadToBlokchain(
+        id,
+        inputs.address,
+        inputs.category,
+        parseInt(inputs.age),
+        inputs.height,
+        parseInt(inputs.weight),
+        inputs.blood,
+        inputs.gender
+      ); //yahan category ki argument daalni he jese patient ki thi
       console.log("uploaded");
     });
   };
@@ -148,16 +184,24 @@ const UploadPdf = (props) => {
                   <input type="file" onChange={handleFile} class="hidden" />
                 </label>
                 <div className=" w-[15rem] md:w-[25rem]">
-                  <CustomInput
+                  {fields.map((field) => (
+                    <CustomInput
+                      name={field.name}
+                      onChange={(event) => handleChange(event)}
+                      label={field.label}
+                      placeholder={field.placeholder}
+                    />
+                  ))}
+                  {/* <CustomInput
                     onChange={handleAddress}
                     label="Enter Address"
                     placeholder="Enter wallet address of the patient"
                   />
                   <CustomInput
-                    onChange={(e)=>setReportCategory(e.target.value)}
+                    onChange={(e) => setReportCategory(e.target.value)}
                     label="Enter Category of the report"
                     placeholder="For example: Blood Report"
-                  />
+                  /> */}
                 </div>
                 <CustomButton onClick={pdfUploadHandler} type="submit">
                   <p className="px-5 py-[2px]">Upload PDF</p>
@@ -187,5 +231,31 @@ const UploadPdf = (props) => {
     </React.Fragment>
   );
 };
+
+const fields = [
+  { name: "address", placeholder: "Enter wallet address", label: "Wallet" },
+  {
+    name: "category",
+    placeholder: "Enter report category",
+    label: "For eg Blood report",
+  },
+  { name: "age", placeholder: "Enter age", label: "Enter age in numbers" },
+  {
+    name: "weight",
+    placeholder: "Enter weight",
+    label: "Enter weight in numbers",
+  },
+  {
+    name: "height",
+    placeholder: "Enter heightt",
+    label: "Enter height in numbers",
+  },
+  { name: "blood", placeholder: "Enter blood type blood", label: "For eg. A+" },
+  {
+    name: "gender",
+    placeholder: "Enter gender",
+    label: "M for Male, F for Female, O for others",
+  },
+];
 
 export default UploadPdf;

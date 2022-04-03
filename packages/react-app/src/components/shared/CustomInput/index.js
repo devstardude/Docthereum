@@ -46,11 +46,12 @@ export const CustomInput = (props) => {
   return (
     <div className="m-3 py-2">
       <TextField
-      onChange={props.onChange}
+        name={props.name}
+        onChange={props.onChange}
         value={props.value}
         placeholder={props.placeholder}
         fullWidth
-        id={props.name}
+        id={props.id}
         label={props.label}
         helperText={props.error}
         multiline={props.multiline && true}
