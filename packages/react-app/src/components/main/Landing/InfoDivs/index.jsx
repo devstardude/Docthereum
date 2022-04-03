@@ -16,7 +16,9 @@ const InfoDivs = (props) => {
             <div className=" flex items-center justify-center h-[25rem]">
               <iframe
                 title={item.title}
-                className= {`relative h-full z-10 pointer-events-none ${item.invert &&"dark:invert"}`}
+                className={`relative h-full z-10 pointer-events-none ${
+                  item.invert && "dark:invert"
+                }`}
                 src={item.frame}
               ></iframe>
             </div>
@@ -56,7 +58,13 @@ const data = [
     frame: "https://embed.lottiefiles.com/animation/69383",
     title: "Remain Anonymous.",
     subtitle: "your medical data can't be tracked back to your real identity",
-    invert:true
+    invert: true,
+  },
+  {
+    frame: "https://embed.lottiefiles.com/animation/100337",
+    title: "Medical Researchers",
+    subtitle: "can analyse anonymous reports from docthereum by The Graph API",
+    rev: true,
   },
 ];
 
