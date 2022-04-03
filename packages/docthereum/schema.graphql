@@ -1,0 +1,39 @@
+type labAuthorisedEntity @entity {
+  id: ID!
+  count: BigInt!
+  name: String! # string
+  _authAddress: Bytes! # address
+  authId: String!
+  authOnDate: BigInt!
+}
+
+type docAuthorisedEntity @entity {
+  id: ID!
+  count: BigInt!
+  name: String! # string
+  _authAddress: Bytes! # address
+  authId: String!
+  authOnDate: BigInt!
+}
+
+type applicationResultEntity @entity {
+  id: ID!
+  count: BigInt!
+  _applicantAddres: Bytes! 
+  status: Boolean!
+}
+
+type reportSavedEntity @entity {
+  id: ID!
+  count: BigInt!
+  fileId: String!
+  category: String!
+  patientName: Bytes! 
+  labName: Bytes! # address
+  addedAt: BigInt!
+  age: BigInt!
+  weight: BigInt!
+  height: BigInt!
+  bloodGroup: String!
+  Gender: String!
+}

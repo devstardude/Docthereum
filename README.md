@@ -1,5 +1,5 @@
 # Docthereum 🩺
-A dapp to maintain anonymous medical reports and aid seamless healthcare across the globe 🌎.
+A dapp to maintain anonymous medical reports and aids in seamless healthcare across the globe 🌎.
 <p align="left">
   <img width="70%" src="https://i.ibb.co/y5DQz8r/Screenshot-84.png">
 </p>
