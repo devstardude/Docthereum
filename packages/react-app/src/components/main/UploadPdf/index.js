@@ -162,7 +162,7 @@ const UploadPdf = (props) => {
     <React.Fragment>
       <BackgroundLayout />
       <MastTitle title="Upload Report" />
-      <div className="pt-[2rem] px-2 md:px-8 ">
+      <div className="py-[2rem] px-2 md:px-8 ">
         <div className="flex justify-center items-center ">
           <div className="w-[90%] md:w-[70%] lg:w-[50%] bg-white/[0.25] dark:bg-black/[0.25] filter backdrop-blur-sm p-4 rounded-lg mb-3">
             <form>
@@ -188,20 +188,10 @@ const UploadPdf = (props) => {
                     <CustomInput
                       name={field.name}
                       onChange={(event) => handleChange(event)}
-                      label={field.label}
-                      placeholder={field.placeholder}
+                      placeholder={field.label}
+                      label={field.placeholder}
                     />
                   ))}
-                  {/* <CustomInput
-                    onChange={handleAddress}
-                    label="Enter Address"
-                    placeholder="Enter wallet address of the patient"
-                  />
-                  <CustomInput
-                    onChange={(e) => setReportCategory(e.target.value)}
-                    label="Enter Category of the report"
-                    placeholder="For example: Blood Report"
-                  /> */}
                 </div>
                 <CustomButton onClick={pdfUploadHandler} type="submit">
                   <p className="px-5 py-[2px]">Upload PDF</p>
@@ -247,7 +237,7 @@ const fields = [
   },
   {
     name: "height",
-    placeholder: "Enter heightt",
+    placeholder: "Enter height",
     label: "Enter height in numbers",
   },
   { name: "blood", placeholder: "Enter blood type blood", label: "For eg. A+" },

@@ -1,8 +1,10 @@
 import React from "react";
 import BackgroundLayout from "../../shared/BackgroundLayout";
+import { CustomFooter } from "../../shared/Footer";
 import MastTitle from "../../shared/MastTitle";
+import Card from "./Card";
 
-import Graph from "./Graph/index"
+import Graph from "./Graph/index";
 //import'./style.css';
 
 const Research = (props) => {
@@ -10,9 +12,11 @@ const Research = (props) => {
     <React.Fragment>
       <BackgroundLayout />
       <MastTitle title="Research" />
-      <Graph {...props} />
-
-      <div className=" px-[1rem] md:px-[5rem] pt-[2rem]">
+      <div className=" px-[1rem] md:px-[5rem] pt-[2rem] pb-[2rem]">
+        <div className="flex items-center justify-center">
+          <Card />
+        </div>
+        <Graph {...props} />
         <div className="font-semibold text-[24px] text-gray-800 dark:text-gray-200 leading-[40px]">
           <p className="">
             Get Anonymous data of Billion of users to research, use or view from
@@ -72,7 +76,7 @@ const data = [
   {
     title: "Here is the link to get your Graph API",
     link: null,
-   
+
     subtitle:
       "https://gateway.testnet.thegraph.com/api/[api-key]/subgraphs/id/E7qhnfSw4g6voKqrkhXeBMsxnhqSCRovCh9b58id4gQM",
   },
