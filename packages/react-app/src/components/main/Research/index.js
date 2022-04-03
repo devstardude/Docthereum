@@ -2,6 +2,7 @@ import React from "react";
 import BackgroundLayout from "../../shared/BackgroundLayout";
 import MastTitle from "../../shared/MastTitle";
 
+import Graph from "./Graph/index"
 //import'./style.css';
 
 const Research = (props) => {
@@ -9,6 +10,8 @@ const Research = (props) => {
     <React.Fragment>
       <BackgroundLayout />
       <MastTitle title="Research" />
+      <Graph {...props} />
+
       <div className=" px-[1rem] md:px-[5rem] pt-[2rem]">
         <div className="font-semibold text-[24px] text-gray-800 dark:text-gray-200 leading-[40px]">
           <p className="">

@@ -7,6 +7,7 @@ import BackgroundLayout from "../../shared/BackgroundLayout";
 import InfoDivs from "./InfoDivs";
 import { motion, AnimatePresence } from "framer-motion";
 import Counter from "./Counter";
+import {LandingFooter} from "../../shared/Footer";
 
 const Landing = (props) => {
   return (
@@ -52,8 +53,7 @@ const Landing = (props) => {
         </div>
       </div>
       <InfoDivs />
-      <div className="text-[50px]">
-      </div>
+      <LandingFooter />
     </div>
   );
 };

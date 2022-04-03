@@ -1,0 +1,14 @@
+.ModalComponent-Wrapper {
+  @apply p-5 z-10 border-2 border-white/50;
+  @apply w-[90%] sm:w-[85%] md:w-[80%];
+  background: rgb(15, 22, 36, 0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 10px;
+}
+
+.ModalComponent-Title {
+  @apply flex justify-center text-white pb-2;
+  @apply text-[20px] md:text-[25px] font-semibold;
+  font-family: "Mulish", sans-serif;
+}

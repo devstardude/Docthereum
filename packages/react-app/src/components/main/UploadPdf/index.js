@@ -21,6 +21,7 @@ import { Buffer } from "buffer";
 import { CustomInput } from "../../shared/CustomInput";
 import CustomButton from "../../shared/CustomButton";
 import MastTitle from "../../shared/MastTitle";
+import { CustomFooter } from "../../shared/Footer";
 const UploadPdf = (props) => {
   const [patientAddress, setPatientAddress] = useState("");
   const [reportCategory, setReportCategory] = useState("");
@@ -101,7 +102,8 @@ const UploadPdf = (props) => {
 
   const { state, send } = useContractFunction(props.contract, "SaveReport");
   const uploadToBlokchain = async (cid, userAddress,category,age,height,weight,blood_group,gender) => {
-    const result = await send(cid, userAddress,category,[19,172,50,"b+","M"]);//[age,height,weight,blood_group,gender]==[int,int,int,string,string]
+    const result = await send(cid, userAddress,category,[19,172,50,"b+","M"]);
+    //[age,height,weight,blood_group,gender]==[int,int,int,string,string]
 
     console.log(state.errorMessage);
     //use state to show progress : minting, succes or failure
@@ -170,9 +172,7 @@ const UploadPdf = (props) => {
           </div>
         </div>
 
-        {/* View PDF */}
         <div className="viewer">
-          {/* render this if we have a pdf file */}
           {pdfFile && (
             <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.12.313/build/pdf.worker.min.js">
               <Viewer
@@ -181,11 +181,9 @@ const UploadPdf = (props) => {
               ></Viewer>
             </Worker>
           )}
-
-          {/* render this if we have pdfFile state null   */}
         </div>
       </div>
-      {/* Upload PDF */}
+      <CustomFooter user="Labs" />
     </React.Fragment>
   );
 };

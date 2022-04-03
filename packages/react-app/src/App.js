@@ -68,27 +68,28 @@ function App() {
   const APIURL =
     "https://api.studio.thegraph.com/query/24067/docthereum/v0.0.2";
 
-  // use to tell if doctor variable: isDoctor 
+  // use to tell if doctor variable: isDoctor
   const { error: contractError1, value: isDoctor } =
-  useCall({
-    contract: contract,
-    method: "AuthorisedDoc",
-    args: [account],
-  }) ?? {};
-  console.log(isDoctor);
-  
+    useCall({
+      contract: contract,
+      method: "AuthorisedDoc",
+      args: [account],
+    }) ?? {};
+  // console.log(isDoctor);
+  // To Check if user is Doctor
+
   //use to tell if lab variable: isLab
   const { error: contractCallError2, value: isLab } =
-  useCall({
-    contract: contract,
-    method: "AuthorisedLab",
-    args: [account],
-  }) ?? {};
-  console.log(isLab);
-  
+    useCall({
+      contract: contract,
+      method: "AuthorisedLab",
+      args: [account],
+    }) ?? {};
+  // console.log(isLab);
+  // To Check if user is Lab
+
   //graph data below
 
-  
   const setGraphDataHandler = (data) => {};
 
   const client = new ApolloClient({
@@ -104,7 +105,7 @@ function App() {
       })
       .then((data) => {
         console.log("App Subgraph data: ", data.data.reportSavedEntities);
-        const reponse = data.data.reportSavedEntities
+        const reponse = data.data.reportSavedEntities;
         console.log("App", reponse);
         setSubgraphData(reponse);
       }) //visualise this data
@@ -123,14 +124,23 @@ function App() {
         </Navbar>
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/myreports" element={<MyReports contract={contract} account={account}/>} />
-          <Route path="/search" element={<SearchReports contract={contract} />} />
+          <Route
+            path="/myreports"
+            element={<MyReports contract={contract} account={account} />}
+          />
+          <Route
+            path="/search"
+            element={<SearchReports contract={contract} />}
+          />
           <Route path="/upload" element={<UploadPdf contract={contract} />} />
           <Route
             path="/register"
             element={<Register contract={contract} account={account} />}
           />
-          <Route path="/research" element={<Research graphData={subgraphData} />} />
+          <Route
+            path="/research"
+            element={<Research graphData={subgraphData} />}
+          />
           <Route path="*" element={<Landing />} />
         </Routes>
       </Router>

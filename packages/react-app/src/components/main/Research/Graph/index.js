@@ -8,7 +8,6 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
-import BackgroundLayout from "../../shared/BackgroundLayout";
 import {
   occurrencesCalculator,
   checkOccuranceValue,
@@ -22,7 +21,7 @@ const Graph = (props) => {
     arr = rawArray;
     let arrayOfDays = [];
     if (arr !== null) {
-      const day = 26;
+      const day = 3;
       arr.map((item) => {
         if (new Date(item.addedAt * 1000).getDate() === day) {
           const hour = new Date(item.addedAt * 1000).getHours();
