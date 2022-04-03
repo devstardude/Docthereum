@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React from "react";
 import {
   LineChart,
   Line,
@@ -16,12 +16,12 @@ import {
 //import'./style.css';
 
 const Graph = (props) => {
-  const [day,setDay] = useState(3)
   const rawArray = props.graphData;
   const modifyArray = (arr) => {
     arr = rawArray;
     let arrayOfDays = [];
     if (arr !== null) {
+      const day = 3;
       arr.map((item) => {
         if (new Date(item.addedAt * 1000).getDate() === day) {
           const hour = new Date(item.addedAt * 1000).getHours();
@@ -48,24 +48,18 @@ const Graph = (props) => {
     }
   };
   dataRawGenerator();
-  const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
   return (
     <React.Fragment>
-      <div className="flex justify-center items-center py-[3rem] h-full w-full overflow-x-auto">
+      <div className="pt-[5rem] h-full w-full overflow-x-auto">
         {props.graphData && (
-          <div>
-            <p className="flex justify-center items-center text-[24px] pb-[20px] text-gray-700 dark:text-gray-200 font-bold">
-              Submissions - Time Graph ({day} of {month[new Date().getMonth()]})
-            </p>
-            <LineChart width={800} height={400} data={chartRawArray}>
-              <Line type="monotone" dataKey="Time" stroke="#8884d8" />
-              <CartesianGrid stroke="#ccc" />
-              <XAxis dataKey="Submissions" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-            </LineChart>
-          </div>
+          <LineChart width={800} height={400} data={chartRawArray}>
+            <Line type="monotone" dataKey="Time" stroke="#8884d8" />
+            <CartesianGrid stroke="#ccc" />
+            <XAxis dataKey="Submissions" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+          </LineChart>
         )}
       </div>
     </React.Fragment>

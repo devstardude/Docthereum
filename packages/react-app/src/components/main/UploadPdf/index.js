@@ -164,7 +164,7 @@ const UploadPdf = (props) => {
       <MastTitle title="Upload Report" />
       <div className="py-[2rem] px-2 md:px-8 ">
         <div className="flex justify-center items-center ">
-          <div className="w-[90%] md:w-[70%] lg:w-[50%] bg-white/[0.25] dark:bg-black/[0.25] filter backdrop-blur-sm p-4 rounded-lg mb-3">
+          <div className="w-[90%] md:w-[70%] lg:w-[80%] bg-white/[0.25] dark:bg-black/[0.25] filter backdrop-blur-sm p-4 rounded-lg mb-3">
             <form>
               <div class="flex flex-col items-center justify-around bg-grey-lighter">
                 <label class="rounded-full px-5 py-[2px] border-[3px] border-[#0ac5a8] text-gray-700 dark:text-gray-200 dark:hover:text-black cursor-pointer hover:bg-[#0ac5a8] hover:text-white font-medium transition-colors">
@@ -183,15 +183,17 @@ const UploadPdf = (props) => {
                   </div>
                   <input type="file" onChange={handleFile} class="hidden" />
                 </label>
-                <div className=" w-[15rem] md:w-[25rem]">
-                  {fields.map((field) => (
-                    <CustomInput
-                      name={field.name}
-                      onChange={(event) => handleChange(event)}
-                      placeholder={field.label}
-                      label={field.placeholder}
-                    />
-                  ))}
+                <div className=" w-[25rem] md:w-[45rem]">
+                  <div class="grid grid-cols-2 gap-4">
+                    {fields.map((field) => (
+                      <CustomInput
+                        name={field.name}
+                        onChange={(event) => handleChange(event)}
+                        placeholder={field.label}
+                        label={field.placeholder}
+                      />
+                    ))}
+                  </div>
                 </div>
                 <CustomButton onClick={pdfUploadHandler} type="submit">
                   <p className="px-5 py-[2px]">Upload PDF</p>
