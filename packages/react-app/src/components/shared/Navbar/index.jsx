@@ -6,7 +6,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
 import useDarkMode from "../../hooks/useDarkMode";
 import { useEthers } from "@usedapp/core";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 const navigation = [
   { name: "Home", href: "/", current: true },
   { name: "Upload", href: "/upload", current: false },
@@ -47,20 +47,24 @@ export default function Navbar(props) {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+              <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start md:justify-around">
+                <div></div>
+                <div></div>
                 <div className="flex-shrink-0 flex items-center">
                   <FaFileMedicalAlt
                     className="h-6 w-6 text-gray-800 dark:text-white"
                     aria-hidden="true"
                   />
-                  <p className="text-gray-800 dark:text-white pl-1 md:pl-3 text-[24px]">
-                    <span className="font-medium text-[#0ac5a8]">Doc</span>
-                    <span className="font-light">thereum</span>
-                  </p>
+                  <Link to="/">
+                    <p className="text-gray-800 dark:text-white pl-1 md:pl-3 text-[24px]">
+                      <span className="font-medium text-[#0ac5a8]">Doc</span>
+                      <span className="font-light">thereum</span>
+                    </p>
+                  </Link>
                 </div>
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
-                    {navigation.map((item, index) => (
+                    {/* {navigation.map((item, index) => (
                       <NavLink
                         onClick={() => setCurrentPage(index)}
                         key={item.name}
@@ -75,7 +79,7 @@ export default function Navbar(props) {
                       >
                         {item.name}
                       </NavLink>
-                    ))}
+                    ))} */}
                   </div>
                 </div>
               </div>

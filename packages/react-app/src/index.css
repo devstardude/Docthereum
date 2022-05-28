@@ -40,3 +40,7 @@ code {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.TextBasic {
+  @apply text-gray-700 dark:text-gray-200 tracking-wide;
+}

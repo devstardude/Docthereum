@@ -23,6 +23,7 @@ import { API_KEY, SUBGRAPH_NAME } from "./constants.js";
 import MyReports from "./components/main/MyReports";
 import SearchReports from "./components/main/SearchReports";
 import Research from "./components/main/Research";
+import NewNav from "./components/shared/Navbar/NewNav";
 
 function WalletButton(props) {
   const [rendered, setRendered] = useState("");
@@ -118,10 +119,13 @@ function App() {
     <div className="App overflow-x-hidden">
       <Router>
         <Navbar>
-          <CustomButton className="hidden md:block pr-3">
+          <CustomButton className="hidden md:block pr-3 ">
             <WalletButton />
           </CustomButton>
         </Navbar>
+        <div className="left-0 top-0 z-40 fixed">
+          <NewNav />
+        </div>
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route

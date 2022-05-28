@@ -23,7 +23,7 @@ const BackgroundIcons = (props) => {
         <div className="absolute h-14 w-14 top-[70%] left-[10%] FloatTwo">
           <SvgFour />
         </div>
-        <div className="absolute h-10 w-10 top-[75%] left-[30%] FloatThree">
+        <div className="absolute h-10 w-10 top-[75%] left-[40%] md:left-[30%] FloatThree">
           <SvgTwo />
         </div>
         <div className="absolute h-12 w-12 top-[80%] right-[20%] FloatTwo">

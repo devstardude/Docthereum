@@ -1,0 +1,6 @@
+.InfoDivs .Stroke{
+    @apply absolute text-[70px] md:text-[100px] ;
+    -webkit-text-stroke-width: 1.5px;
+    -webkit-text-stroke-color: #66666617;
+    -webkit-text-fill-color: #ffffff00;
+}
