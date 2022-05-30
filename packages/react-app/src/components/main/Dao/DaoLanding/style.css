@@ -1,0 +1,8 @@
+.DaoLanding .Title {
+  @apply text-[45px] sm:text-[55px] md:text-[100px] leading-[20px] ;
+  @apply  font-bold text-[#0ac5a8] transition-all duration-300 mb-[4rem] mt-[2rem];
+}
+.DaoLanding .Subtitle {
+  @apply font-thin text-[20px] sm:text-[25px] md:text-[30px]  ;
+  @apply  font-bold transition-all duration-300;
+}

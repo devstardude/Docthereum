@@ -53,15 +53,15 @@
 }
 .link:hover {
   border-right: 4px solid white;
-  background: rgb(45, 51, 89);
+  background: #0ac5a8;
   @apply text-white;
 
   transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
 }
 .active {
   border-right: 4px solid white;
-  background: rgb(45, 51, 89);
-  @apply text-white;
+  background: #0ac5a8;
+  @apply text-white dark:text-black;
 }
 .link_text {
   white-space: nowrap;

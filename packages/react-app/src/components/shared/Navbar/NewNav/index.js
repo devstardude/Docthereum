@@ -2,17 +2,12 @@ import { NavLink } from "react-router-dom";
 import {
   FaBars,
   FaHome,
-  FaLock,
-  FaMoneyBill,
-  FaUser,
   FaFileUpload,
 } from "react-icons/fa";
-import { MdMessage } from "react-icons/md";
 import { GiDoctorFace, GiDna2 } from "react-icons/gi";
-import { BiAnalyse, BiSearch } from "react-icons/bi";
-import { BiCog } from "react-icons/bi";
-import { AiFillHeart, AiTwotoneFileExclamation } from "react-icons/ai";
-import { BsCartCheck } from "react-icons/bs";
+import {  BiSearch } from "react-icons/bi";
+import {  AiTwotoneFileExclamation } from "react-icons/ai";
+import { HiUserGroup } from "react-icons/hi";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import SidebarMenu from "./SidebarMenu";
@@ -48,34 +43,39 @@ const routes = [
     name: "Research",
     icon: <GiDna2 size={20} />,
   },
-//   {
-//     path: "/settings",
-//     name: "Settings",
-//     icon: <BiCog size={20} />,
-//     exact: true,
-//     subRoutes: [
-//       {
-//         path: "/settings/profile",
-//         name: "Profile ",
-//         icon: <FaUser />,
-//       },
-//       {
-//         path: "/settings/2fa",
-//         name: "2FA",
-//         icon: <FaLock />,
-//       },
-//       {
-//         path: "/settings/billing",
-//         name: "Billing",
-//         icon: <FaMoneyBill />,
-//       },
-//     ],
-//   },
-//   {
-//     path: "/saved",
-//     name: "Saved",
-//     icon: <AiFillHeart size={20} />,
-//   },
+  {
+    path: "/dao",
+    name: "DoctheremDAO",
+    icon: <HiUserGroup size={20} />,
+  },
+  //   {
+  //     path: "/settings",
+  //     name: "Settings",
+  //     icon: <BiCog size={20} />,
+  //     exact: true,
+  //     subRoutes: [
+  //       {
+  //         path: "/settings/profile",
+  //         name: "Profile ",
+  //         icon: <FaUser />,
+  //       },
+  //       {
+  //         path: "/settings/2fa",
+  //         name: "2FA",
+  //         icon: <FaLock />,
+  //       },
+  //       {
+  //         path: "/settings/billing",
+  //         name: "Billing",
+  //         icon: <FaMoneyBill />,
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     path: "/saved",
+  //     name: "Saved",
+  //     icon: <AiFillHeart size={20} />,
+  //   },
 ];
 
 const NewNav = ({ children }) => {

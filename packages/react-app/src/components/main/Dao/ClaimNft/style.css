@@ -1,0 +1,20 @@
+.ClaimNft {
+  @apply text-white px-[2rem] md:px-[5rem] flex items-center justify-center h-screen;
+}
+.ClaimNft .Card {
+  @apply w-full bg-[#0ac5a9e8] rounded-md;
+}
+
+.ClaimNft .Card .Pfp {
+  @apply h-[15rem] w-[15rem] transition-all;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+.ClaimNft .Card .Pfp:hover {
+  @apply rounded-md;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0);
+}
+
+.ClaimNft .Card .Content{
+    background-color: #f7f7f7eb;
+background-image: url("https://www.transparenttextures.com/patterns/back-pattern.png");
+}

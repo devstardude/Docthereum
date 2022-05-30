@@ -5,6 +5,7 @@ import {
   useEthers,
   useLookupAddress,
 } from "@usedapp/core";
+
 import React, { useEffect, useState } from "react";
 import Landing from "./components/main/Landing";
 import Navbar from "./components/shared/Navbar";
@@ -24,11 +25,14 @@ import MyReports from "./components/main/MyReports";
 import SearchReports from "./components/main/SearchReports";
 import Research from "./components/main/Research";
 import NewNav from "./components/shared/Navbar/NewNav";
+import Dao from "./components/main/Dao";
+
 
 function WalletButton(props) {
   const [rendered, setRendered] = useState("");
 
   const ens = useLookupAddress();
+  
   const { account, activateBrowserWallet, deactivate, error } = useEthers();
   useEffect(() => {
     if (ens) {
@@ -118,6 +122,7 @@ function App() {
   return (
     <div className="App overflow-x-hidden">
       <Router>
+        {console.log("yoyo", process.env.REACT_APP_PRIVATE_KEY)}
         <Navbar>
           <CustomButton className="hidden md:block pr-3 ">
             <WalletButton />
@@ -145,6 +150,7 @@ function App() {
             path="/research"
             element={<Research graphData={subgraphData} />}
           />
+          <Route path="/dao" element={<Dao address={account} />} />
           <Route path="*" element={<Landing />} />
         </Routes>
       </Router>

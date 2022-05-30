@@ -4,6 +4,14 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { DAppProvider, Mainnet,Rinkeby } from "@usedapp/core";
 import React from "react";
 import ReactDOM from "react-dom";
+import {
+  useAddress,
+  useMetamask,
+  useEditionDrop,
+  useToken,
+  useVote,
+  useNetwork,
+} from "@thirdweb-dev/react";
 
 import App from "./App";
 
