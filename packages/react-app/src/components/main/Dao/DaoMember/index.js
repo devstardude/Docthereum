@@ -10,7 +10,7 @@ import {
 import { AddressZero } from "@ethersproject/constants";
 import BackgroundLayout from "../../../shared/BackgroundLayout";
 import MastTitle from "../../../shared/MastTitle";
-//import'./style.css';
+import "./style.css";
 const shortenAddress = (str) => {
   return str.substring(0, 6) + "..." + str.substring(str.length - 4);
 };
@@ -70,14 +70,54 @@ const DaoMember = (props) => {
     };
     getAllAddresses();
   }, [editionDrop.history]);
+
+  useEffect(() => {
+    // A simple call to vote.getAll() to grab the proposals.
+    const getAllProposals = async () => {
+      try {
+        const proposals = await vote.getAll();
+        setProposals(proposals);
+        console.log("🌈 Proposals:", proposals);
+      } catch (error) {
+        console.log("failed to get proposals", error);
+      }
+    };
+    getAllProposals();
+  }, [vote]);
+
+  useEffect(() => {
+    // If we haven't finished retrieving the proposals from the useEffect above
+    // then we can't check if the user voted yet!
+    if (!proposals.length) {
+      return;
+    }
+
+    const checkIfUserHasVoted = async () => {
+      try {
+        const hasVoted = await vote.hasVoted(proposals[0].proposalId, address);
+        setHasVoted(hasVoted);
+        if (hasVoted) {
+          console.log("🥵 User has already voted");
+        } else {
+          console.log("🙂 User has not voted yet");
+        }
+      } catch (error) {
+        console.error("Failed to check if wallet has voted", error);
+      }
+    };
+    checkIfUserHasVoted();
+  }, [proposals, address, vote]);
+
   return (
     <div className="flex flex-col w-full h-screen">
       <BackgroundLayout />
       <MastTitle title="Dao Members" />
       <div className="flex justify-center items-center align-middle rounded w-full md:w-full pt-[3rem] h-full mb-6">
         <div className="flex flex-col md:flex-row bg-white/[0.25] dark:bg-black/[0.25] filter backdrop-blur-sm rounded-md overflow-hidden h-full w-[90%] md:w-[80%]">
-          <div className=" w-full md:w-[50%] bg-[#0ac5a9e8] p-6">
-            <h2>Member List</h2>
+          <div className=" w-full md:w-[50%] bg-[#0ac5a9e8] p-6 TextBasic">
+            <h2 className="flex justify-center font-bold text-[20px] pb-3 mb-5 border-b border-gray-50">
+              Members List
+            </h2>
             <table className="card">
               <thead>
                 <tr>
@@ -97,8 +137,10 @@ const DaoMember = (props) => {
               </tbody>
             </table>
           </div>
-          <div>
-            <h2>Active Proposals</h2>
+          <div className="p-6 TextBasic CubeBackground">
+            <h2 className="flex justify-center font-bold text-[20px] pb-3 mb-5 border-b border-gray-800 dark:border-gray-50">
+              Proposals
+            </h2>
             <form
               onSubmit={async (e) => {
                 e.preventDefault();
@@ -185,11 +227,11 @@ const DaoMember = (props) => {
               }}
             >
               {proposals.map((proposal) => (
-                <div key={proposal.proposalId} className="card">
+                <div key={proposal.proposalId} className="ProposalCard">
                   <h5>{proposal.description}</h5>
                   <div>
                     {proposal.votes.map(({ type, label }) => (
-                      <div key={type}>
+                      <div className="DaoMemberRadioButton" key={type}>
                         <input
                           type="radio"
                           id={proposal.proposalId + "-" + type}
@@ -206,19 +248,19 @@ const DaoMember = (props) => {
                   </div>
                 </div>
               ))}
-              <button disabled={isVoting || hasVoted} type="submit">
-                {isVoting
-                  ? "Voting..."
-                  : hasVoted
-                  ? "You Already Voted"
-                  : "Submit Votes"}
-              </button>
-              {!hasVoted && (
-                <small>
-                  This will trigger multiple transactions that you will need to
-                  sign.
-                </small>
-              )}
+              <div className="flex items-center justify-center mt-4">
+                <button
+                  className="Button"
+                  disabled={isVoting || hasVoted}
+                  type="submit"
+                >
+                  {isVoting
+                    ? "Voting..."
+                    : hasVoted
+                    ? "You Already Voted"
+                    : "Submit Votes"}
+                </button>
+              </div>
             </form>
           </div>
         </div>

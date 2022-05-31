@@ -1,0 +1,50 @@
+table{
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  overflow: hidden;
+  
+ td, th{
+    border-top: 1px solid #ECF0F1;
+    padding: 10px;
+  }
+  
+  td{
+    border-left: 1px solid #ECF0F1;
+    border-right: 1px solid #ECF0F1;
+  }
+  
+  th{
+    background-color: #4ECDC4;
+  }
+  
+  tr:nth-of-type(even) td{
+    background-color: lighten(#4ECDC4, 35%);
+  }
+  
+  .total{
+    th{
+      background-color: white;
+    }
+    
+    td{
+      text-align: right;
+      font-weight: 700;
+    }
+  }
+}
+
+.ProposalCard{
+  @apply bg-white/[0.25] dark:bg-black/[0.25] filter backdrop-blur-sm border-2 border-gray-800 dark:border-gray-50 p-2 rounded-md mb-2;
+}
+.DaoMemberRadioButton input[type=radio]:checked ~ .check {
+  border: 5px solid #20CAB1;
+}
+
+.DaoMemberRadioButton input[type=radio]:checked ~ .check::before{
+  background: #20CAB1;
+}
+
+.DaoMemberRadioButton input[type=radio]:checked ~ label{
+  color: #20CAB1;
+}

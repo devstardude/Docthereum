@@ -14,9 +14,9 @@
   clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0);
 }
 
-.ClaimNft .Card .Content{
-    @apply bg-white dark:bg-black;
-background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+.ClaimNft .Card .Content {
+  @apply bg-white dark:bg-black;
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
 }
 
 /* ------------------- */

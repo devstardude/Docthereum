@@ -31,9 +31,9 @@ const ClaimNft = (props) => {
                     {props.isClaiming ? "Minting..." : "Mint your nft (FREE)"}
                   </CustomButton>
                 </div>
-                <div onClick={props.connectWallet}>
+                {/* <div onClick={props.connectWallet}>
                   <CustomButton>Connect Wallet Again</CustomButton>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

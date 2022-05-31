@@ -42,6 +42,10 @@ const DaoComponent = (props) => {
   const shortenAddress = (str) => {
     return str.substring(0, 6) + "..." + str.substring(str.length - 4);
   };
+  useEffect(()=>{
+    const connect = () => connectWithMetamask;
+    connect()
+  },[address])
   // Retrieve all our existing proposals from the contract.
   useEffect(() => {
     if (!hasClaimedNFT) {
