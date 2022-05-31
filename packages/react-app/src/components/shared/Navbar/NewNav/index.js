@@ -145,7 +145,7 @@ const NewNav = ({ children }) => {
               )}
             </AnimatePresence>
 
-            <div className="bars">
+            <div className="bars cursor-pointer">
               <FaBars onClick={toggle} />
             </div>
           </div>
