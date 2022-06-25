@@ -7,7 +7,7 @@ A dapp to maintain anonymous medical reports and aids in seamless healthcare acr
 ## Project Architechure
 <img  width="70%" src="https://i.ibb.co/zQTV9DL/The-Business-Model-Kit-1.jpg" alt="The-Business-Model-Kit-1" border="0">  
 
- ## See Working on Youtube: [Video](https://youtu.be/uwM1e-83o0A "Video")
+ > ### See Working on Youtube: [Video](https://youtu.be/uwM1e-83o0A "Video")
 
 ---
 ## The problem it solves
