@@ -25,3 +25,4 @@ packages/subgraph/build/
 packages/subgraph/src/types/
 
 yarn.lock
+npm.lock

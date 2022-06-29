@@ -20,7 +20,7 @@ const Research = (props) => {
         <div className="font-semibold text-[24px] text-gray-800 dark:text-gray-200 leading-[40px]">
           <p className="">
             Get Anonymous data of Billion of users to research, use or view from
-            here.
+            here in Docthereum.
           </p>
           <p>
             Simply Query the{" "}
