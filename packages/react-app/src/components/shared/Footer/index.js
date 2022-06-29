@@ -10,7 +10,12 @@ export const LandingFooter = (props) => {
           className="text-[20px] mr-2 text-gray-800 dark:text-white"
           aria-hidden="true"
         />
-        Docthereum
+        Docthereum&nbsp;
+        <span className="text-gray-800 dark:text-white">
+          (Checkout&nbsp;
+          <a className="underline text-red-800" href="https://www.linode.com/">Linode&nbsp;</a> and&nbsp;
+          <a className="underline text-red-800" href="https://hashnode.com/">hashnode</a>)
+        </span>
       </div>
       <div className="flex justify-center items-center text-[18px] py-[7px] text-gray-800 dark:text-gray-400">
         © {new Date().getFullYear()}, Made with &nbsp;
