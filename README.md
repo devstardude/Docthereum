@@ -63,3 +63,9 @@ So we were able to test the verification functionality on Kovan, all while deplo
 > It was our first time using **Linode for hosting React app** so we went through some documentation and videos. To make the process easier for developers who will choose Linode in the future for the same purpose, I wrote a 'How to Tutorial' to give back to the community and Linode's amazing service. Here is a link for that article too.
 
 ### Blog: [Link](https://dev.to/devstardude/how-to-deploy-react-app-on-remote-linux-server-using-nginx-in-linode-3iid)
+
+## Links to Linode and Hashnode:
+
+Linode: [Link](https://www.linode.com/)
+
+Hashnode: [Link](https://hashnode.com/)
