@@ -51,12 +51,15 @@ So we were able to test the verification functionality on Kovan, all while deplo
 **Note:-** currently the dapp calls the instance deployed on the Rinkeby network.
 
 ## Technologies we used
-#### 1. Solidity  
-#### 2. IPFS    
-#### 3. TheGraph 
-#### 4. Chainlink 
-#### 5. React 
-#### 6. Web3 
+#### 1. Linode (For React app Hosting)
+#### 2. Solidity  
+#### 3. IPFS    
+#### 4. TheGraph 
+#### 5. Chainlink 
+#### 6. React 
+#### 7. Web3 
 
+### You can Test it live at 🚀 : [Website](HTTP://192.46.214.84)
+> It was our first time using **Linode for hosting React app** so we went through some documentation and videos. To make the process easier for developers who will choose Linode in the future for the same purpose, I wrote a 'How to Tutorial' to give back to the community and Linode's amazing service. Here is a link for that article too.
 
-## Test live 🚀 :- https://docthereum.web.app/
+### Blog: [Link](https://dev.to/devstardude/how-to-deploy-react-app-on-remote-linux-server-using-nginx-in-linode-3iid)
