@@ -27,12 +27,11 @@ import Research from "./components/main/Research";
 import NewNav from "./components/shared/Navbar/NewNav";
 import Dao from "./components/main/Dao";
 
-
 function WalletButton(props) {
   const [rendered, setRendered] = useState("");
 
   const ens = useLookupAddress();
-  
+
   const { account, activateBrowserWallet, deactivate, error } = useEthers();
   useEffect(() => {
     if (ens) {
@@ -71,7 +70,7 @@ function App() {
   const contract = new Contract(addresses.DocAddress, abis.docthereum);
   const { account } = useEthers();
   const APIURL =
-    "https://api.studio.thegraph.com/query/24067/docthereum/v0.0.2";
+    "https://api.studio.thegraph.com/query/47465/docthereum/v0.0.1";
 
   // use to tell if doctor variable: isDoctor
   const { error: contractError1, value: isDoctor } =

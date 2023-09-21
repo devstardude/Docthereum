@@ -1,7 +1,7 @@
 import "./index.css";
 
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-import { DAppProvider, Mainnet,Rinkeby } from "@usedapp/core";
+import { DAppProvider, Mainnet, Rinkeby, Mumbai } from "@usedapp/core";
 import React from "react";
 import ReactDOM from "react-dom";
 import {
@@ -18,11 +18,12 @@ import App from "./App";
 // Change this to your own Infura project id: https://infura.io/register
 const INFURA_PROJECT_ID = "6606d56974ac469e86a5347a6cb36f50";
 const config = {
-  readOnlyChainId: Rinkeby.chainId,
+  readOnlyChainId: Mumbai.chainId,
   readOnlyUrls: {
-    [Rinkeby.chainId]: "https://rinkeby.infura.io/v3/" + INFURA_PROJECT_ID,
+    [Mumbai.chainId]:
+      "https://polygon-mumbai.infura.io/v3/" + INFURA_PROJECT_ID,
   },
-}
+};
 
 // You should replace this url with your own and put it into a .env file
 // See all subgraphs: https://thegraph.com/explorer/
@@ -39,5 +40,5 @@ ReactDOM.render(
       </ApolloProvider>
     </DAppProvider>
   </React.StrictMode>,
-  document.getElementById("root"),
+  document.getElementById("root")
 );
