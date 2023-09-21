@@ -1,0 +1,72 @@
+type ApplicationResult @entity(immutable: true) {
+  id: Bytes!
+  applicantAddress: Bytes! # address
+  AuthId: String! # string
+  status: Boolean! # bool
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ChainlinkCancelled @entity(immutable: true) {
+  id: Bytes!
+  Docthereum_id: Bytes! # bytes32
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ChainlinkFulfilled @entity(immutable: true) {
+  id: Bytes!
+  Docthereum_id: Bytes! # bytes32
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ChainlinkRequested @entity(immutable: true) {
+  id: Bytes!
+  Docthereum_id: Bytes! # bytes32
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type DoctorAuthorised @entity(immutable: true) {
+  id: Bytes!
+  name: String! # string
+  _authAddre: Bytes! # address
+  AuthId: String! # string
+  AuthOnDate: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type LabAuthorised @entity(immutable: true) {
+  id: Bytes!
+  name: String! # string
+  _authAddre: Bytes! # address
+  AuthId: String! # string
+  AuthOnDate: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ReportSaved @entity(immutable: true) {
+  id: Bytes!
+  fileId: String! # string
+  category: String! # string
+  PatientName: Bytes! # address
+  LabName: Bytes! # address
+  AddedAt: BigInt! # uint256
+  age: BigInt! # int256
+  height: BigInt! # int256
+  weight: BigInt! # int256
+  bloodGroup: String! # string
+  gender: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
